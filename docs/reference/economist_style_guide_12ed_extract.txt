@@ -1,0 +1,624 @@
+=== PAGE 1 ===
+Style Guide
+Twelfth edition
+
+=== PAGE 2 ===
+Published under exclusive licence from The Economist by 
+Profile Books Ltd 
+3 Holford Yard
+Bevin Way
+London wc1x 9hd
+www.profilebooks.com
+Copyright © The Economist Newspaper Ltd, 1986, 1991, 1993, 1996, 1998, 
+2000, 2001, 2003, 2005, 2010, 2013, 2015, 2018
+All rights reserved. Without limiting the rights under copyright reserved 
+above, no part of this publication may be reproduced, stored in or 
+introduced into a retrieval system, or transmitted, in any form or by any 
+means (electronic, mechanical, photocopying, recording or otherwise), 
+without the prior written permission of both the copyright owner and the 
+publisher of this book.
+The greatest care has been taken in compiling this book. However, no 
+responsibility can be accepted by the publishers or compilers for the 
+accuracy of the information presented. 
+Typeset in Milo by MacGuru Ltd  
+Printed and bound in Great Britain by Clays, St Ives plc
+A CIP catalogue record for this book is available from the British Library 
+isbn 978 1 78125 831 6
+eisbn 978 1 78283 348 2
+   
+
+=== PAGE 3 ===
+Preface
+vii
+Introduction
+1
+part 1	 The essence of style
+5
+part 2	 American and British English
+155
+part 3	 Useful reference
+175
+	
+Index
+261
+Contents
+
+=== PAGE 4 ===
+vii
+Preface
+Every newspaper has its own style book, a set of rules telling 
+journalists whether to write e-mail or email, Gadaffi or Qaddafi, 
+judgement or judgment. The Economist’s internal style book (now 
+an online guide, rather than a book) does this and a bit more. It also 
+warns writers of some common mistakes and encourages them to 
+write with clarity and simplicity.
+All the prescriptive judgments in the style guide are directly 
+derived from those used each week in writing and editing The 
+Economist. And some of the judgments, advice and definitions given 
+here differ from those given by other authorities.
+This twelfth edition of the “The Economist Style Guide” is in three 
+parts. The first is based on the traditional style book used by those 
+who edit The Economist; it is largely the work of John Grimond, who 
+over the years was editor of the Britain, United States and Foreign 
+sections, before retiring in 2013. Johnny is a hard act to follow, and he 
+left at a time when proper English usage seemed in full retreat in the 
+face of texting, tweeting and internet jargon generally. His work still 
+stands as a bulwark against it, as well as a monument to his impish 
+wit and his sense of euphony, rightness and correctness. If slight 
+cracks have now appeared in the bulwark, it is because language is a 
+living thing that continually changes; some changes are benign, and 
+some (such as the pervasive “smartness” of the digital age) simply 
+cannot be resisted.
+The second part of the book, on American and British English, 
+describes some of the main differences between the two great 
+English-speaking areas in spelling, grammar and usage.
+To make the style guide of greater general interest, Part 3 consists 
+of handy reference material that might appeal to readers of The 
+Economist.
+
+=== PAGE 5 ===
+viii
+Style Guide
+Throughout the text, italic type is used for examples except where 
+they are presented in lists, when the type is roman, as this text is. 
+Words in bold indicate a separate but relevant entry, that is, a cross-
+reference. 
+Many people have been involved in this book as it has developed and 
+changed over the years. Thanks are due to all of them, with special 
+thanks to Penny Butler, Ingrid Esling, Graham Douglas, Penny Garrett, 
+Lane Greene and Anton LaGuardia, whose help has been invaluable 
+and continues to be so.
+Ann Wroe,
+Obituaries Editor, The Economist
+January 2018
+
+=== PAGE 6 ===
+1
+Introduction
+On only two scores can The Economist hope to outdo its rivals 
+consistently. One is the quality of its analysis; the other is the quality 
+of its writing. The aim of this book is to give some general advice on 
+writing, to point out some common errors and to set some arbitrary 
+rules.
+The first requirement of The Economist is that it should be readily 
+understandable. Clarity of writing usually follows clarity of thought. 
+So think what you want to say, then say it as simply as possible. Keep 
+in mind George Orwell’s six elementary rules:
+1 	 Never use a metaphor, simile or other figure of speech which you 
+are used to seeing in print (see metaphors).
+2 	 Never use a long word where a short one will do (see short words).
+3 	 If it is possible to cut out a word, always cut it out (see unnecessary 
+words).
+4 	 Never use the passive where you can use the active (see grammar 
+and syntax).
+5 	 Never use a foreign phrase, a scientific word or a jargon word if 
+you can think of an everyday English equivalent.
+6 	 Break any of these rules sooner than say anything outright 
+barbarous.
+Readers are primarily interested in what you have to say. By the 
+way in which you say it, you may encourage them either to read on or 
+to give up. If you want them to read on:
+Catch the attention of the reader  and then get straight into the 
+article. Do not spend several sentences clearing your throat, 
+setting the scene or sketching in the background. Introduce the 
+facts as you tell the story and hold the reader by the way you 
+unfold the tale and by a fresh but unpretentious use of language.
+
+=== PAGE 7 ===
+2
+Style Guide
+In starting your article, let your model be the essays of Francis 
+Bacon. He starts “Of Riches” with “I cannot call riches better than 
+the baggage of virtue.” “Of Cunning” opens with “We take cunning 
+for a sinister or crooked wisdom.” “Of Suspicion” is instantly on 
+the wing with “Suspicions amongst thoughts are like bats amongst 
+birds, they ever fly by twilight.” Each of these beginnings carries 
+implicitly within it an entire essay. Each seizes the reader by the 
+lapels and at once draws him into the subject. No gimmickry is 
+needed, no flowery language, no literary contrivance. Plain words 
+on their own carry enough meaning to provoke an intriguing 
+thought, stir the reader’s curiosity and thus make him want to 
+continue.
+You must strive for a similar effect. Articles in The Economist 
+should be like essays, in that they have a beginning, a middle and 
+an end. They should not be mere bits of information stitched 
+together. Each should be a coherent whole, a series of paragraphs 
+that follow logically in order and, ideally, will suffer if even one 
+sentence is cut out. If the article is a report, the facts must be 
+selected and presented as a story. If it is a leader or more analytical 
+article, it should also have a sense of sequence, so that the reader 
+feels he is progressing from a beginning to a conclusion.
+Either way, it is up to you to provide the ideas, analysis and 
+argument that bind the elements of the article together. That is 
+the hard part. Once you have them, though, you need only plain, 
+straightforward words to express them. Do not imagine that 
+you can disguise the absence of thought with long words, stale 
+metaphors or the empty jargon of academics. In moderation, 
+however, you can enliven your writing with a fresh metaphor, an 
+occasional exuberance or an unusual word or phrase that nicely 
+suits your purpose.
+Read through your writing several times.  Edit it ruthlessly, 
+whether by cutting or polishing or sharpening, on each occasion. 
+Avoid repetition. Cut out anything superfluous. And resist any 
+temptation to achieve a literary effect by making elliptical remarks 
+or allusions to unexplained people or events. Rather, hold your 
+reader’s attention by keeping the story moving. If the tale begins to 
+flag, or the arguments seem less than convincing, you can rescue 
+
+=== PAGE 8 ===
+3
+introduction
+it only by the sharpness of your mind. Nothing is to be gained by 
+resorting to orotundities and grandiloquence, still less by calling 
+on clichés and vogue expressions. Unadorned, unfancy prose is 
+usually all you need.
+Do not be stuffy.  “To write a genuine, familiar or truly English 
+style”, said Hazlitt, “is to write as anyone would speak in common 
+conversation who had a thorough command or choice of words or 
+who could discourse with ease, force and perspicuity setting aside 
+all pedantic and oratorical flourishes.”
+Use the language of everyday speech, not that of spokesmen, 
+lawyers or bureaucrats (so prefer let to permit, people to persons, 
+buy to purchase, colleague to peer, way out to exit, present to gift, rich 
+to wealthy, show to demonstrate, break to violate). Pomposity and 
+long-windedness tend to obscure meaning, or reveal the lack of it: 
+strip them away in favour of plain words.
+Do not be hectoring or arrogant.  Those who disagree with you are 
+not necessarily stupid or insane. Nobody needs to be described 
+as silly: let your analysis show that he is. When you express 
+opinions, do not simply make assertions. The aim is not just 
+to tell readers what you think, but to persuade them; if you use 
+arguments, reasoning and evidence, you may succeed. Go easy on 
+the oughts and shoulds.
+Do not be too pleased with yourself.  Don’t boast of your own 
+cleverness by telling readers that you correctly predicted 
+something or that you have a scoop. You are more likely to bore or 
+irritate them than to impress them.
+Do not be too chatty.  Surprise, surprise is more irritating than 
+informative. So is Ho, ho and, in the middle of a sentence, wait for 
+it, etc.
+Do not be too didactic.  If too many sentences begin Compare, 
+Consider, Expect, Imagine, Look at, Note, Prepare for, Remember or 
+Take, readers will think they are reading a textbook (or, indeed, a 
+style book). This may not be the way to persuade them to renew 
+their subscriptions.
+
+=== PAGE 9 ===
+4
+Style Guide
+Do your best to be lucid.  (“I see but one rule: to be clear”, Stendhal.) 
+Simple sentences help. Keep complicated constructions and 
+gimmicks to a minimum, if necessary by remembering the New 
+Yorker’s comment: “Backward ran sentences until reeled the 
+mind.”
+Mark Twain described how a good writer treats sentences: “At 
+times he may indulge himself with a long one, but he will make 
+sure there are no folds in it, no vaguenesses, no parenthetical 
+interruptions of its view as a whole; when he has done with it, it 
+won’t be a sea-serpent with half of its arches under the water; it 
+will be a torch-light procession.”
+Long paragraphs, like long sentences, can confuse the reader. 
+“The paragraph”, according to Fowler, “is essentially a unit of 
+thought, not of length; it must be homogeneous in subject matter 
+and sequential in treatment.” One-sentence paragraphs should be 
+used only occasionally.
+Clear thinking is the key to clear writing. “A scrupulous writer”, 
+observed Orwell, “in every sentence that he writes will ask himself 
+at least four questions, thus: What am I trying to say? What words 
+will express it? What image or idiom will make it clearer? Is 
+this image fresh enough to have an effect? And he will probably 
+ask himself two more: Could I put it more shortly? Have I said 
+anything that is avoidably ugly?”
+Scrupulous writers will also notice that their copy is edited 
+only lightly and is likely to be used. It may even be read.
+
+=== PAGE 10 ===
+part 1
+The essence of style
+
+=== PAGE 11 ===
+6
+a
+a or the  see grammar and syntax.
+abbreviations 
+Write words in their full form on first appearance:
+Trades Union Congress (not tuc), Troubled Asset Relief Programme 
+(not tarp)
+unless an abbreviation or acronym is so familiar that it is used 
+more often in full:
+aids  bbc  cia  eu  fbi  hiv  imf  nasa nato  ngo  oecd  
+unesco
+or unless the full form would provide little illumination – 
+awacs, dna. If in doubt about its familiarity, explain what the 
+organisation is or does. After the first mention, try not to repeat 
+the abbreviation too often; so write the agency rather than the 
+iaea, the party rather than the kmt, to avoid spattering the page 
+with capital letters. And prefer chief executive, boss or manager to 
+ceo.
+There is no need to give the initials of an organisation if it is 
+not referred to again. This clutters both the page and the brain.
+Do not use spatterings of abbreviations and acronyms simply 
+in order to cram more words in; you will end up irritating readers 
+rather than informing them. An article in a recent issue of The 
+Economist contained the following:
+cia  dci  dni  dod  dvd  fbi  nctc  nsa
+Some of these are well known to most readers and can readily be 
+held in the mind. But unfamiliar abbreviations may oblige the 
+reader to constantly refer back to the first use.
+
+=== PAGE 12 ===
+7
+a or the  >  abbreviations
+ampersands  should be used:
+1	
+when they are part of the name of a company:
+	
+Procter & Gamble  Pratt & Whitney
+2	
+for such things as constituencies, where two names are linked 
+to form one unit:
+	
+The rest of Brighouse & Spenborough joins with the Batley part of 
+Batley & Morley to form Batley & Spen.
+	
+The area thus became the Pakistani province of Kashmir and the 
+Indian state of Jammu & Kashmir.
+3	
+in r&d and s&1.
+compass references/readings  should be given as 40°N, etc.
+definite article  If an abbreviation can be pronounced – cosatu, 
+nato, unesco – it does not generally require the definite 
+article. Other organisations, except companies, should usually be 
+preceded by the:
+the bbc  the kgb  the nhs  the niesr  the unhcr
+elements
+Do not sprinkle chemical symbols unnecessarily: they may 
+put readers off. But common abbreviations such as CO2 may 
+sometimes be used for variety.
+Different isotopes of the same element are distinguished by raised 
+(superscript) prefixes:
+carbon-14 is 14C
+helium-3 is 3He
+initials in people’s and companies’ names  take points (with a 
+space between initials and name, but not between initials). In 
+general, follow the practice preferred by people, companies and 
+organisations in writing their own names, for example:
+I.M. Pei  J.C. Penney  J. Sainsbury  A.N. Wilson
+junior and senior  Spell out in full (and lower case) junior and 
+senior after a name:
+Douglas Fairbanks junior  Douglas Fairbanks senior
+
+=== PAGE 13 ===
+part 1: the essence of style
+8
+lower case  Abbreviate:
+kilograms (not kilogrammes) to kg (or kilos)
+kilometres per hour to kph
+kilometres to km
+miles per hour to mph
+Use m for million, bn for billion and trn for trillion.
+Use lower case for kg, km, lb (never lbs), mph and other measures, 
+and for ie, eg; ie should be followed by a comma. When used 
+with figures, these lower-case abbreviations should follow 
+immediately, with no space:
+11am  4.30pm  15kg  35mm  100mph  78rpm
+Two abbreviations together, however, must be separated: 60m b/d. 
+Use b/d not bpd as an abbreviation for barrels per day.
+mps  Except in British contexts, use mp only after first spelling out 
+member of Parliament in full (in many places an mp is a military 
+policeman).
+Members of the European Parliament are meps (not Euro-mps).
+Members of the Scottish Parliament are msps.
+Members of the Welsh Assembly are ams (Assembly Members).
+organisations
+efta is the European Free Trade Association.
+The fao is the Food and Agriculture Organisation.
+The fda is the Food and Drug Administration.
+The ida is the International Development Association.
+nafta is the North American Free-Trade Agreement.
+The plo is the Palestine Liberation Organisation.
+pronounceable abbreviations
+Abbreviations that can be pronounced and are composed of bits 
+of words rather than just initials should be spelt out in upper and 
+lower case:
+Cocom 	
+Nepad	
+Unicef
+Mercosur	
+Renamo	
+Unprofor
+There is generally no need for more than one initial capital letter, 
+unless the word is a name: ConsGold, KwaZulu, McKay, MiG.
+
+=== PAGE 14 ===
+abbreviations
+9
+OK (supposedly an abbreviation for “Oll Correct”) is spelled thus, 
+and is not okay when spelled thus.
+ranks and titles  Do not use Prof, Sen, Col, etc. Lieut-Colonel and 
+Lieut-Commander are permissible. (These should be Commander 
+and Colonel on second mention.) Rev is also permissible, but it 
+must be preceded by the and followed by a Christian name or 
+initial: the Rev Jesse Jackson (thereafter Mr Jackson).
+scientific units named after individuals  Scientific units, except 
+those of temperature, that are named after individuals are not 
+capitalised when written out in full: watt, joule, etc. When 
+abbreviated these units should be set in capitals, though any 
+attachments denoting multiples go in lower case:
+watt is w
+kilowatt, 1,000 watts, is kw
+milliwatt, one-thousandth of a watt, is mw
+megawatt, 1m watts, is mw
+gigawatt, 1 bn (109) watts, is gw 
+terawatt, 1 trn (1012) watts, is tw 
+petawatt, 1 quadrillion (1015) watts, is pw 
+megahertz is mhz
+writing out upper-case abbreviations  Most upper-case 
+abbreviations are shortenings of proper names with initial capital 
+letters. The lso is the London Symphony Orchestra. However, there 
+are exceptions:
+cap but common agricultural policy
+emu but economic and monetary union
+gdp but gross domestic product
+psbr but public-sector borrowing requirement
+vlsi but very large-scale integration
+miscellaneous  Spell out:
+page  pages  hectares  miles
+Do not spell out Centigrade, and do not use Fahrenheit for 
+temperature.
+Remember, too, that the v of hiv stands for virus, so do not write 
+
+=== PAGE 15 ===
+part 1: the essence of style
+10
+hiv virus. Similarly the D of DAB stands for digital, so do not write 
+DAB digital radio.
+See measures in Part 3.
+absent  In Latin absent is a verb meaning they are away. In English it 
+is either an adjective (absent friends) or a verb (to absent yourself). 
+Avoid the American habit of using it as a preposition meaning in 
+the absence of.
+accents  On words now accepted as English, use accents only when 
+they make a crucial difference to pronunciation:
+café  cliché  communiqué  éclat  exposé  façade  soupçon
+But: chateau  decor  elite  feted  naive
+The main accents and diacritical signs are:
+acute	
+république
+grave	
+grand-mère
+circumflex	
+bête noire
+umlaut	
+Länder, Österreich (Austria)
+cedilla	
+français
+tilde	
+señor, São Paulo
+If you use one accent (except the tilde – strictly, a diacritical sign), 
+use all:
+émigré  mêlée  protégé  résumé
+Put the accents and diacritical signs on French, German, Spanish 
+and Portuguese names and words only:
+José Manuel Barroso	
+cafèzinho
+Federico Peña	
+coñac
+Françoise de Panafieu	
+déjeuner
+Wolfgang Schäuble	
+Frühstück
+Any foreign word in italics should, however, be given its proper 
+accents. See also italics.
+acronym  A pronounceable word, formed from the initials of other 
+words, like radar, nimby or nato. It is not a set of initials, like the 
+bbc or the imf.
+actionable  means giving ground for a lawsuit. Do not use it to mean 
+
+=== PAGE 16 ===
+11
+absent  >  agony column
+susceptible of being put into practice: prefer practical or practicable. 
+Do not use action as a verb.
+adjectives and adverbs  see grammar and syntax, punctuation.
+adjectives of proper nouns  see grammar and syntax, punctuation.
+address  What did journalists and politicians do in the days, not so 
+long ago, when address was used as a verb only before objects 
+such as audience, letter, ball, haggis and, occasionally, themselves? 
+Questions can be answered, issues discussed, problems solved, 
+difficulties dealt with. See clichés.
+aetiology, etiolate  Aetiology is the science of causation, or an inquiry into 
+something’s origins. Etiolate is to make or become pale for lack of light.
+affect (verb)  means to have an influence on, as in the novel affected 
+his attitude to immigrants. See also effect.
+affirmative action  is a euphemism with little to be said for it. It is 
+too late to suppress it altogether, but try to avoid it as much as 
+possible. If you cannot escape it, put it in quotation marks on first 
+mention and, unless the context makes its meaning clear, explain 
+what it is. You may, however, find that preferential treatment, job 
+preferment or even discrimination serve just as well as alternatives. 
+See euphemisms.
+affordable  By whom? Avoid affordable housing, affordable computers 
+and other unthinking uses of advertising lingo.
+Afghan names  see names.
+aggravate  means make worse, not irritate or annoy.
+aggression  is an unattractive quality, so do not call a keen salesman 
+an aggressive one (unless his foot is in the door).
+agony column  Remember that when Sherlock Holmes perused this, 
+it was a personal column. Only recently has it come to mean letters 
+to an agony aunt.
+
+=== PAGE 17 ===
+part 1: the essence of style
+12
+agree  Things are agreed on, to or about, not just agreed. See transitive 
+and intransitive verbs.
+aircraft  see hyphens and italics.
+alibi  An alibi is the fact of being elsewhere, not a false explanation.
+alternate, alternative  Alternate (as an adjective) means every other. 
+As a noun, it has now come to mean a stand-in for a director or 
+delegate. Alternative (as a noun), strictly, means one of two, not 
+one of three, four, five or more (which may be options). As an 
+adjective, alternative means of two (or, loosely, more) things, or 
+possible as an alternative.
+Americanisms 
+See Part 2, on British and American usage. To the points made 
+there might be added the following preferred usages in British 
+English (and in The Economist):
+and not additionally
+the army not the military (noun)
+car not automobile
+company not corporation
+court not courtroom or courthouse
+district not neighborhood
+normality not normalcy
+oblige not obligate
+rocket not skyrocket
+Back-formations are common in English, so curate, the verb 
+meaning organise or superintend exhibitions of pictures, 
+sculptures and so on formed from curator, is now acceptable in 
+British English. But it is still too soon for gallerist (prefer dealer or, 
+if appropriate, just gallery).
+adverbs  Put adverbs where you would put them in normal 
+English speech, which is usually after the verb (not before it, 
+which usually is where Americans put them).
+avoid nouning adjectives  Do not noun adjectives such as:
+advisory – prefer warning
+
+=== PAGE 18 ===
+13
+agree  >  Americanisms
+centennial – prefer centenary
+inaugural – prefer inauguration
+avoid verbing and adjectiving nouns  Try not to verb nouns or to 
+adjective them. So do not:
+access files (except electronically)
+action proposals
+author books (still less co-author them)
+critique style guides
+gun someone down; use shoot
+haemorrhage red ink (haemorrhage is a noun)
+let one event impact another (try affect)
+loan money, still less gift it
+pressure colleagues (press will do)
+progress reports, or reference them
+source inputs
+summit a hill
+trial programmes
+See transitive and intransitive verbs.
+Avoid parenting (or using the word) and parenting skills. (See also 
+grammar and syntax.)
+Though it is sometimes necessary to use nouns as adjectives, do 
+not call:
+an attempted coup a coup attempt
+a suspected terrorist a terrorist suspect
+the Californian legislature the California legislature
+And avoid throwing together several nouns into one adjectival 
+reticule:
+Texas millionaire real-estate developer and failed thrift entrepreneur 
+Hiram Turnipseed …
+coining words  Avoid coining verbs and adjectives unnecessarily.
+Instead of:
+dining experiences and writing experiences, use dining and writing;
+downplaying criticism, you can play it down (or perhaps minimise it);
+upcoming and ongoing use forthcoming and continuing.
+Why outfit your children when you can fit them out?
+
+=== PAGE 19 ===
+part 1: the essence of style
+14
+Hosting has now entered the language (often to mean acting as host 
+at an event paid for by someone else, otherwise giving would be the 
+right word), but guesting (appearing as a guest on a programme) 
+should be kept at bay, as should gifting.
+overuse of American words  Do not feel obliged to follow 
+American usage with such words as:
+constituency – try supporters
+gubernatorial – try governor’s
+perception – try belief or view
+rhetoric (of which there is too little, not too much) – try language 
+or speeches or exaggeration if that is what you mean
+Note that in British usage:
+City centres are not central cities.
+Companies: call for a record profit if you wish to exhort the 
+workers, but not if you merely predict one. And do not post it if it 
+has been achieved. If it has not, look for someone new to head, not 
+head up, the company.
+Countries, nations and states: London is the country’s capital, not 
+the nation’s. If you wish to build a nation, you will bind its peoples 
+together; if you wish to build a state, you will forge its institutions.
+Deep: make a deep study or even a study in depth, but not an in-
+depth study.
+Grow a beard or a tomato, but not a company (or indeed a 
+salesman: the Financial Times reported on August 8th 2003 that 
+bmw was “to grow its own car salesmen”).
+Do not use likely to mean probably.
+On-site inspections are allowed, but not on-train teams or in-ear 
+headphones.
+Stay outside the door, not outside of it.
+Programme: you may program a computer, but in all other contexts 
+the word is programme.
+Use power cut or blackout rather than outage.
+Keep a promise, rather than deliver on it.
+Raise cattle and pigs, but children are (or should be) brought up.
+Regular is not a synonym for ordinary or normal: Mussolini 
+brought in the regular train, All-Bran the regular man; it is quite 
+normal to be without either.
+
+=== PAGE 20 ===
+15
+Americanisms  >  an
+A religious group sounds better than a faith-based organisation.
+Do not task people, or meet with them.
+Throw stones, not rocks.
+Trains run from railway stations, not train stations. The people in 
+them, and on buses, are passengers, not riders.
+Use senior rather than ranking.
+And only the speechless are dumb and the insane mad.
+tenses  Choose tenses according to British usage, too. In 
+particular, do not fight shy of the perfect tense, especially where 
+no date or time is given. Thus:
+Mr Obama has woken up to the danger is preferable to Mr Obama 
+woke up to the danger, unless you can add last week or when he 
+heard the explosion.
+Do not write Your salary just got smaller or I shrunk the kids. In 
+British English Your salary has just got smaller and I’ve shrunk the 
+kids.
+See also adjectives of proper nouns, euphemisms, grammar and 
+syntax, and Part 2.
+among and between  Some sticklers insist that, where division 
+is involved, among should be used where three or more are 
+concerned, between where only two are concerned. So:
+The plum jobs were shared among the Socialists, the Liberals and 
+the Christian Democrats, while the president and the vice-president 
+divided the cash between themselves.
+This distinction is unnecessary. But take care with between. To fall 
+between two stools, however painful, is grammatically acceptable; 
+to fall between the cracks is to challenge the laws of physics.
+Prefer among to amongst, as while to whilst.
+an  should be used before a word beginning with a vowel sound (an 
+egg, an umbrella, an mp) or an h if, and only if, the h is silent (an 
+honorary degree). But a European, a university, a U-turn, a hospital, a 
+hotel. Historical and historian are preceded by a whether or not you 
+treat the h as silent.
+

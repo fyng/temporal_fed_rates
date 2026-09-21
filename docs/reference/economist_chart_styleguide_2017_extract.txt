@@ -1,0 +1,3414 @@
+=== PAGE 1 ===
+Version 1.2 // Updated 4 May 2017
+mattmclean@economist.com
+The Economist
+visual styleguide
+
+=== PAGE 2 ===
+Overview 
+ 3 what’s changed?
+Chart elements
+ 4 Chart sizes
+ 5 Typefaces
+ 6 Print
+ 7 Web
+ 8 Leader block / 
+ 
+ World this Week
+ 9 Espresso
+ 10 Panel charts
+Colour
+ 11 Print palette
+ 12 Web palette
+ Chart styling
+ 21 Double-scale charts
+ 22 Blob-heads
+ 23 Timelines
+ 25 Miscellaneous styling
+ 26 Resources
+2
+Table of contents
+Chart types
+ 13 Bar/column, side by side
+ 14 Bar/column, stacked
+ 15 Line, side by side
+ 16 Line, stacked
+ 17 Thermometer
+ 18 Scatter
+ 19 Table
+ 20 Pie / Doughnut
+
+=== PAGE 3 ===
+3
+overview
+What’s changed
+Web charts
+1985
+90
+95
+2000
+05
+10
+16
+*
+1
+0
+0
+1
+2
+3
+4
+5
++
+–
+–
+Demographics
+Inequality
+Global savings glut
+Relative price of capital
+Public investment
+Spreads
+Growth
+Unexplained
+1
+2
+3
+4
+5
+The real deal
+Sources: “Measuring the ‘world’ real  interest rate”, by M. King and D. Low,
+NBER working paper, Feb 2014; “Secular drivers of the global real interest rate” 
+by L. Rachel and T. Smith, Bank of England working paper, Dec 2015; The Economist
+*The Economist estimate
+Average ten-year inﬂation-indexed bond yield, %
+G7 countries, excluding Italy
+“World” real interest rate
+1985
+90
+95
+2000
+05
+10
+16
+*
+-1
+0
+0
+1
+2
+3
+4
+5
+Demographics
+Inequality
+Global savings glut
+Relative price of capital
+Public investment
+Spreads
+Growth
+Unexplained
+-1
+-2
+-3
+-4
+-5
+Drivers of the change in interest rates
+1980-2015, percentage points
+Drivers of the change in interest rates
+The real deal
+Sources: “Measuring the ‘world’ real  interest rate”, by M. King and D. Low, NBER working paper, Feb 2014; “Secular drivers
+of the global real interest rate” by L. Rachel and T. Smith, Bank of England working paper, Dec 2015; The Economist
+*The Economist estimate
+Average ten-year inflation-indexed bond yield, %
+G7 countries, excluding Italy
+“World” real interest rate
+1980-2015, percentage points
+OLD DESIGN
+NEW DESIGN
+rotated tag
+White background
+24pt spacer between panels
+No margins
+Source text 75% black
+Marker for panels
+New colour palette
+New typeface
+
+=== PAGE 4 ===
+4
+elements
+Chart sizes
+STANDARD PRINT
+SPECIAL REPORT / TQ / ESSAY
+1 COLUMN
+160pts / 290px
+2/3 
+COLUMN
+LEADER /
+ WTW
+117pts / 290px
+ﬁxed height
+83.5pts / 207px
+1/2 
+COLUMN
+117pts
+FREE EXCHANGE
+245pts
+1 COLUMN
+245pts
+2 COLUMN
+332pts / 595px
+160pts / 290px
+332pts / 595px
+2 1/2 COLUMN
+3 COLUMN
+504pts
+print width (pts)
+web equivalent (px)
+
+=== PAGE 5 ===
+elements
+5
+Typefaces
+Econ Sans Cnd bold
+a b c d e f g h i j k l m n o p q r s t u v w x y z 
+A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+1234567890!@£$%^&()?
+a b c d e f g h i j k l m n o p q r s t u v w x y z 
+A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+1234567890!@£$%^&()?
+Econ Sans bold
+a b c d e f g h i j k l m n o p q r s t u v w x y z 
+A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+1234567890!@£$%^&()?
+a b c d e f g h i j k l m n o p q r s t u v w x y z 
+A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+1234567890!@£$%^&()?
+a b c d e f g h i j k l m n o p q r s t u v w x y z 
+A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+1234567890!@£$%^&()?
+a b c d e f g h i j k l m n o p q r s t u v w x y z 
+A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+1234567890!@£$%^&()?
+Econ Sans Cnd medium
+a b c d e f g h i j k l m n o p q r s t u v w x y z 
+A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+1234567890!@£$%^&()?
+a b c d e f g h i j k l m n o p q r s t u v w x y z 
+A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+1234567890!@£$%^&()?
+Econ Sans Cnd regular
+a b c d e f g h i j k l m n o p q r s t u v w x y z 
+A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+1234567890!@£$%^&()?
+a b c d e f g h i j k l m n o p q r s t u v w x y z 
+A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+1234567890!@£$%^&()?
+Econ Sans Cnd light
+Chart headlines.
+Oversize numbers and labels.
+Use rarely.
+USE FOR
+Use rarely - prominent 
+labelling only
+Top-level chart labels
+Panel headings
+coloured text
+Sub title 
+standard chart labelling
+Axis labels
+source text
+Footnote symbols
+order of use
+*
+1
+†
+2
+‡
+3
+§
+4
+**
+5
+††
+6
+‡‡
+7
+§§
+8
+
+=== PAGE 6 ===
+6
+elements
+Chart dimensions
+Standard print
+Less cash, less credit
+Source: Thomson Reuters
+India, bank credit to the commercial sector
+% increase on a year earlier
+Econ sans bold 9.5/11pt
+Econ sans cnd regular 8/9.5 
+light 7.5/9
+Ten-year government-bond yields, %
+Source: Thomson Reuters
+Years since start
+0
+2
+4
+6
+8
+1
+5
+10
+13
+Period beginning:
+January 1989 (Japan)
+January 1999 (US)
+Where Tokyo leads
+Econ sans cnd regular 8/9.5 
+Source: cnd light 6.5pt 75k
+axis label cnd reg 7/7.5
+0
+2
+4
+6
+1
+5
+10
+13
+Econ sans cnd medium 7.5/9
+cnd light 7.5/9
+cnd light 7.5/9
+Econ sans bold 9.5/11pt
+TICKMARKS
+ACTUAL SIZE
+cnd light 7pt
+7
+Where possible, put units and date 
+information on a second line at 
+smaller font size
+With sub-subtitle
+2000 02
+04 06
+08
+10
+12
+14
+16
+0
+5
+10
+15
+20
+25
+30
+DIMENSIONS AND TYPE SIZES
+160pts
+15
+17
+11
+15
+10
+10
+10
+10
+10
+6
+6
+6
+165
+5
+160pts
+15
+17
+11
+15
+10
+10
+6
+6
+1pt
+0.5pt thickness
+0.4pt thickness
+3
+2
+5
+height
+
+=== PAGE 7 ===
+7
+elements
+Chart dimensions
+Standard web
+ACTUAL SIZE
+National anthem monopolies
+Sources: International Olympic Committee; Sports Reference; The Economist
+*Uniﬁed team of ex-Soviet republics
+Number of “medal sweeps” by country
+0
+2
+4
+6
+8
+10
+12
+1948
+52
+56
+60
+64
+68
+72
+76
+80
+84
+88
+92
+96
+2000
+04
+08
+12
+16
+United States
+Soviet Union
+East Germany
+Other
+*
+National anthem monopolies
+Sources: International Olympic Committee; Sports Reference; The Economist
+*Uniﬁed team of ex-Soviet republics
+Number of “medal sweeps” by country
+0
+2
+4
+6
+8
+10
+12
+1948
+52
+56
+60
+64
+68
+72
+76
+80
+84
+88
+92
+96
+2000
+04
+08
+12
+16
+United States
+Soviet Union
+East Germany
+Other
+*
+DIMENSIONS AND TYPE SIZES
+332pts
+332pts
+Web charts are built at standard print
+widths and then exported at 179.22%
+595px
+BUILT AT
+APPEARS AT
+15
+17
+11
+15
+10
+5
+10
+5
+
+=== PAGE 8 ===
+8
+elements
+Chart dimensions
+leader block / 
+world this week 
+ACTUAL SIZE
+2011
+12
+13
+14
+15
+0
+1
+2
+3
+Fed target
+US consumer prices
+% increase on a year earlier
+2011
+12
+13
+14
+15
+0
+1
+medium 6pt
+Econ sans bold 8pt
+Econ sans cnd reg 7pt
+light 6pt
+Leader blocks should be simpliﬁed as much as possible, with minimal grid lines and tick-mark labelling
+Emphasis should be on showing a clear overall message, rather than identifying values for every data point.
+Return on assets
+*7-month moving average
+Chinese industrial enterprises*, %
+1999
+2005
+10
+15
+0
+5
+10
+ Private-owned
+State-owned 
+Property taxes
+As % of total market value, 2014
+New York
+London
+Annual
+Transaction
+0.8
+0.2
+0.4
+0.4
+Renewable energy
+*Includes estimates for undisclosed deals
+New investment*, $bn
+2004
+04
+14
+2014
+China
+India
+5.1
+5.2
+10.1
+78.9
+Argentina
+GDP, % increase
+on year earlier
+9.1
+2.1
+2011
+2015*
+0
+Budget deficit
+as % of GDP
+-2.9
+-5.6
+2011
+2015*
+*forecast
+Deaths from terrorism
+*To August 31st
+0
+100
+200
+2005
+10
+16*
+05
+10
+16*
+United States
+W. Europe
+DIMENSIONS AND TYPE SIZES
+117pts
+83.5pts
+(Leader block 
+ﬁxed height)
+12
+13
+9
+10
+10
+5
+6
+4
+117pts
+83.5
+leader charts are exported
+for the web at 247.86%
+290px
+208
+BUILT AT
+APPEARS AT
+
+=== PAGE 9 ===
+9
+elements
+Chart dimensions
+espresso
+ACTUAL SIZE
+US retail sales
+Source: US Department of Commerce
+Excluding motor vehicles and parts, 
+% change on a year earlier
+-8
+-4
+0
+4
+8
+2007
+08
+09
+10
+11
+12
+13
+14
+15
+LA (CHART AS LEAD IMAGE)
+DA (CHART IN ARTICLE BODY)
+No ﬁxed depth - same type sizes as standard chart
+Fixed depth, blank spacer at bottom of chart
+Below the horizon
+Source: Thomson Reuters
+Ten-year government-bond yields,%
+2014
+15
+16
+-1
+0
+1
+2
+3
+Japan
+Germany
+United States
+Econ sans cnd bold 8pt
+Source: US Department of Commerce
+Econ sans cnd reg 8pt
+cnd light 7.5pt
+-8
+-4
+0
+4
+8
+2007
+08
+09
+10
+11
+12
+13
+14
+15
+Econ sans bold 9.5/11pt
+Source: Thomson Reuters
+Econ sans cnd regular 8/9.5 
+2014
+15
+16
+-1
+0
+1
+2
+3
+Japan
+Germany
+United States
+DIMENSIONS AND TYPE SIZES
+160pts
+160pts
+6
+6
+OVERALL
+DEPTH
+160pt
+CONTENT
+120pt
+LEAVE
+BLANK
+40pt
+15
+9.5
+10
+5
+10
+
+=== PAGE 10 ===
+elements
+10
+Chart dimensions
+panel charts
+ACTUAL SIZE
+Racy
+Sources: GDELT; RCP; YouGov
+*National news mentions of Trump compared with all Republican candidates  †Poll Jul 30th-Aug 6th 2016
+Donald Trump’s media dominance 
+and polling surge
+Support for Trump v racial resentment 
+and authoritarianism†, 
+Republican primary voters
+Voter support, %
+United States
+J
+J
+A
+S
+O
+N
+D
+2015
+J
+F
+M
+A M
+2016
+0
+20
+40
+60
+80
+100
+0
+10
+20
+30
+40
+50
+TV mentions*, % of total
+Polling average, %
+0
+20
+40
+60
+LOWEST
+HIGHEST
+Degree of authoritarianism
+Level of resentment
+Racial resentment
+Authoritarianism
+Racy
+Sources: GDELT; RCP; YouGov
+*National news mentions of Trump compared with all Republican candidates  †Poll Jul 30th-Aug 6th 2016
+Donald Trump’s media dominance 
+and polling surge
+Support for Trump v racial resentment 
+and authoritarianism†, 
+Republican primary voters
+Voter support, %
+United States
+J
+J
+A
+S
+O
+N
+D
+2015
+J
+F
+M
+A M
+2016
+0
+20
+40
+60
+80
+100
+0
+10
+20
+30
+40
+50
+TV mentions*, % of total
+Polling average, %
+0
+20
+40
+60
+LOWEST
+HIGHEST
+Degree of authoritarianism
+Level of resentment
+Racial resentment
+Authoritarianism
+Racy
+Sources: GDELT; 
+RCP; YouGov
+*National news mentions of Trump compared
+with all Republican candidates
+†Poll Jul 30th-Aug 6th 2016
+Donald Trump’s media dominance 
+and polling surge
+Support for Trump v racial resentment 
+and authoritarianism†, 
+Republican primary voters
+Voter support, %
+United States
+J
+J
+A
+S
+O
+N
+D
+2015
+J
+F
+M
+A M
+2016
+0
+20
+40
+60
+80
+100
+0
+10
+20
+30
+40
+50
+TV mentions*, % of total
+Polling average, %
+0
+20
+40
+60
+LOWEST
+HIGHEST
+Degree of authoritarianism
+Level of resentment
+Racial resentment
+Authoritarianism
+LANDSCAPE
+PORTRAIT
+DIMENSIONS AND TYPE SIZES
+332pts
+10x1pt
+17
+11
+10
+10
+8
+15
+15
+24
+6
+
+=== PAGE 11 ===
+colour
+11
+Chart palette
+PRINT
+C 0
+M 100
+Y 100
+K 0
+C 12
+M 80
+Y 60
+K 0
+C 10
+M 70
+Y 50
+K 0
+C 90
+M 50
+Y 15
+K 5
+C 82
+M 0
+Y 18
+K 8
+C 67
+M 0
+Y 18
+K 0
+BACKGROUND
+NEUTRAL 
+MAIN
+C 12
+M 30
+Y 70
+K 0
+C 85
+M 0
+Y 30
+K 20
+C 0
+M 75
+Y 35
+K 45
+C 27
+M 42
+Y 25
+K 10
+C 53
+M 0
+Y 26
+K 0
+SECONDARY
+BRIGHT
+DARK
+C 40
+M 70
+Y 30
+K 6
+C 0
+M 68
+Y 73
+K 0
+C 6
+M 40
+Y 100
+K 0
+C 33
+M 13
+Y 95
+K 2
+C 85
+M 10
+Y 0
+K 58
+C 80
+M 25
+Y 50
+K 50
+C 38
+M 30
+Y 43
+K 26
+SUPPORTING Use for multi-category charts where high contrast is needed 
+C 7.5
+M 0
+Y 0
+K 5
+C 15
+M 0
+Y 0
+K 10
+C 10
+M 0
+Y 0
+K 25
+C 30
+M 0
+Y 0
+K 50
+C 20
+M 0
+Y 0
+K 80
+C 0
+M 0
+Y 0
+K 50
+C 0
+M 0
+Y 0
+K 25
+C 0
+M 0
+Y 0
+K 75
+C 0
+M 0
+Y 0
+K 100
+BLACK PALETTE
+PRINT BKGD
+ECON RED
+RED1
+BLUE1
+BLUE2
+BLUE2 TEXT
+RED TEXT
+HIGHLIGHT
+C 22.5
+M 0
+Y 0
+K 15
+NUMBER BOX
+GRID LINES
+GREY BOX
+GREY TEXT
+
+=== PAGE 12 ===
+colour
+12
+Chart palette
+WEB
+E3120B
+0C0C0C
+006BA2
+DB444B
+3EBCD2
+379A8B
+EBB434
+B4BA39
+9A607F
+D1B07C
+EQUAL LIGHTNESS COLOUR SCALES
+RED
+BLUE
+CYAN
+GREEN
+YELLOW
+OLIVE
+PURPLE
+GOLD
+GREY
+MAIN
+E9EDF0
+758D99
+B7C6CF
+3F5661
+758D99
+00588D
+A81829
+005F73
+005F52
+714C00
+4C5900
+78405F
+674E1F
+3F5661
+1270A8
+C7303C
+00788D
+00786B
+8D6300
+667100
+925977
+826636
+576E79
+3D89C3
+E64E53
+0092A7
+2E9284
+AA7C00
+818A00
+AD7291
+9D7F4E
+6F8793
+5DA4DF
+FF6B6C
+25ADC2
+4DAD9E
+C89608
+9DA521
+C98CAC
+B99966
+89A2AE
+7BBFFC
+FF8785
+4EC8DE
+69C9B9
+E7B030
+BAC03F
+E6A6C7
+D5B480
+A4BDC9
+98DAFF
+FFA39F
+6FE4FB
+86E5D4
+FFCB4D
+D7DB5A
+FFC2E3
+F2CF9A
+BFD8E5
+ECON RED
+BLACK
+TEXT
+BOXES/NAV
+
+=== PAGE 13 ===
+chart types
+13
+Bar / column
+Side-by-side
+   
+Trader woes
+Sources: Census Bureau; IMF
+*Jan-Nov annualised
+China-United States trade in goods
+Salud
+Source: OECD
+Doctors’ consultations per person
+Selected countries, 2009
+0
+2
+4
+6
+8
+Germany 
+Spain
+Austria
+France
+Luxembourg
+Portugal
+Britain
+Denmark
+Sweden
+Another dotcom boom
+Source: Goldman Sachs
+*In dollar terms
+Change in worldwide capital spending*, %
+2014-17 forecast
+-60 -40 -20
+0
+20
+40
+60
+Internet
+Software
+Tech hardware
+IT services
+Health care
+Total
+Leisure
+Chemicals
+Oil, gas and fuels
+Metals and mining
+Property
+Energy equipment
+Autumn fall
+Source: IMF
+GDP, % increase on previous year
+0
+2
+1
+3
+June
+September
+2011
+2012
+2011
+2012
+2011
+2012
+2011
+2012
+2011
+2012
+Spain
+Italy
+France
+Euro area
+Germany
+Forecasts made in:
+Defenders of democracy
+Source: Pew Global Attitudes Survey
+Respondents saying that honest elections held
+regularly with a choice of at least two political
+parties are very important, 2007, %
+0
+20
+40
+60
+80
+Chile
+Russia
+Poland
+South Africa
+Malaysia
+Mexico
+Brazil
+Egypt
+India
+Middle class
+Low income
+0
+5
+10
+15
+20
+5 years
+10 years
+20 years
+Forestry
+Rural property
+All property
+Equities
+Growth in Asia
+Source: OECD
+*Annual average
+GDP forecasts, % change on a year earlier
+-2
+0
+2
+4
+6
+8
+Malaysia
+Thailand
+Brunei
+Singapore
+Cambodia
+Laos
+China
+India
+2015
+2016
+2016-20*
+1
+COLOUR ORDER
+COLOUR
+OVERIDES
+Where categories are chronological, 
+use light-to-dark scale
+If categories form meaningful groups, 
+use colour to reinforce that
+Diﬀerentiate positive/
+negative values by colour 
+only where there is a 
+meaningful diﬀerence 
+i.e. imports / exports
+2
+3
+4
+5
+6
+-20
+-15
+-10
+-5
+0
+5
+White British
+Other White
+Mixed
+Bangladeshi
+Pakistani
+Indian
+Chinese
+African
+Caribbean
+Inner London
+Outer London
+Metropolitan areas
+Other large cities
+1 trace with highlight
+2 traces 
+2 traces with sub-categories 
+1 trace with +/- axis
+The mighty jungle
+Sources: MSCI; JP Morgan
+*To 2014
+Britain, annualised rate of return 
+on investment*, %
+Don’t fence me in
+Source: University 
+of Manchester 
+* % that needs to move to
+ create an even distribution
+Britain, % change in segregation index*
+2001-11
+The money drain
+Source: Central Bank of Russia
+*To June 30th
+Net private capital inﬂows/outﬂows, $bn
+African lion
+Source: IMF
+Ethiopia’s GDP, % change on a year earlier
+*Estimate
+-150
+-100
+-50
+0
+50
+100
+1994 96
+98 2000 02
+04
+06
+08
+11*
+0
+2
+4
+6
+8
+10
+12
+14
+2004
+06
+08
+10
+12
+14 15*
+-4
+0
+4
+8
+12
+1995
+2000
+05
+10
+16*
+-4
+0
+4
+1995
+2000
+05
+10
+16*
+China, as % of GDP
+United States, as % of GDP
+Exports
+Imports
+
+=== PAGE 14 ===
+chart types
+14
+Bar / column
+Stacked
+PP 123
+PSOE 
+90
+Podemos
+69
+Ciudadanos 40
+EAJ-PNV 6
+DiL 8
+Others 5
+ERC 9
+176 required for majority
+0
+350
+0
+20
+40
+60
+80
+100
+EU-28
+Switzerland
+Germany
+Spain
+France
+Italy
+Britain
+Romania
+Italy
+Poland
+Britain
+Portugal
+Germany
+Other
+Trump’s troops
+Sources: YouGov; 
+CCES; The Economist
+*5,773 registered voters surveyed
+June 4th to July 9th 2016
+How do you feel about Donald Trump as 
+the 2016 Republican nominee for president?*
+White men 
+no college
+White women 
+no college
+White men 
+college educated
+Non-white men 
+college educated
+White women 
+college educated
+Non-white men 
+no college
+Non-white women 
+college educated
+Non-white women 
+no college
+% of total voters
+2012
+Enthusiastic
+Satisﬁed
+Dissatisﬁed
+Upset
+Not sure
+0
+20
+40
+60
+80 100
+22
+24
+16
+17
+6
+7
+3
+4
+COLOUR
+OVERIDES
+You may need to swap in other 
+colours for charts with more than
+4 categories
+Use grey for ‘other’ / 
+‘dont know’ etc
+For stacked bars with few categories or labelling issues, consider 
+removing tick marks and labelling each segment value. 
+If categories form meaningful groups,
+use colour to reinforce that
+1
+COLOUR ORDER
+2
+3
+4
+5
+6
+Electricity
+0
+2
+4
+6
+8
+10
+Fighters’
+salary 
+Social services
+Military 
+camps
+Islamic police
+Treasury
+Media
+Monthly spending $5.8m
+Oil & gas
+Conﬁscation
+Tax
+20.1
+14.3
+12.0
+4
+Overall Monthly revenue $79.8m
+The Fed says no to nuptials
+Source: comScore
+AT&T
+T-Mobile
+Verizon
+Sprint Nextel
+Other
+Mobile operators’ US market share 
+July 2011, %
+30.4
+10.0 31.4
+11.1 16.8
+44.1
+9.6
+30.5
+12.9
+8.0
+All mobiles
+Smartphones
+No one’s a winner
+Spanish general election 2015, Seats won
+Sources: Ministry of the Interior; El País
+Movers and shakers
+Source: European Commission
+*Including EFTA
+Intra-European* migrants living elsewhere
+2014, % of total by destination country
+Looting the Levant
+Sources: IHS
+*Estimates
+ 
+Deir al-Zor governorate Monthly revenue $8.7m
+Islamic State’s ﬁnances*, January 2015, $m
+Getting sociable
+Source: ZenithOptimedia
+Global internet-advertising spending, $bn
+More in than out
+Sources: US Census Bureau;
+US Bureau of Economic Analysis
+*January-September
+United States, merchandise-trade deﬁcit
+% of GDP
+0
+-1
+-2
+-3
+-4
+-5
+-6
+1990
+95
+2000
+05
+10
+16*
+China
+Rest of world
+0
+50
+100
+150
+200
+2008
+10
+12
+14
+16
+17
+Paid search
+Display
+Classiﬁed
+Online video
+FORECAST
+
+=== PAGE 15 ===
+chart types
+15
+Lines
+Side-by-side
+80
+100
+120
+140
+160
+180
+2001 03
+05
+07
+09
+11
+13
+15
+Bus
+Tube
+Car
+Population
+0
+5
+10
+15
+20
+1910
+70
+Available years
+2010 25*
+Saudi
+Arabia
+U.A.E
+Egypt
+Palestine
+Iraq
+Syria
+Israel
+South Korea
+0
+10
+20
+30
+40
+50
+1960
+70
+80
+90
+2000
+13
+Lithuania
+Hungary
+Russia
+Japan
+US
+Britain
+1
+HIGH CONTRAST 
+ALTERNATIVES
+COLOUR ORDER
+2
+3
+4
+5
+6
+1 line
+Standard colour order
+2 lines
+3 lines
+4 lines
+5 lines
+6 lines
+Source: Thomson Reuters
+Years since start
+0
+2
+4
+6
+8
+1
+5
+10
+13
+Period beginning
+January 1989 (Japan)
+January 1999 (US)
+Ten-year government-bond yields, %
+Where Tokyo leads
+Penumbral
+2006
+07
+08
+09
+10
+11
+Source: CoreLogic
+*Foreclosed and delinquent
+homes not yet on the market
+0
+0.5
+1.0
+1.5
+2.0
+US shadow housing inventory*
+Units, m
+Transports of delight
+Sources: Transport for London; ONS; The Economist
+London’s population and journeys
+2001=100
+Exodus
+Source: “Ongoing Exodus: Tracking the 
+Emigration of Christians from the Middle 
+East” by T. Johnson and G. Zurlo, 2015
+*Forecast
+Christians, as % of population
+Coming down everywhere
+Suicides per 100,000 population
+Sources: ONS; Eurostat
+
+=== PAGE 16 ===
+chart types
+16
+Lines
+Stacked
+Netherlands
+Bermuda & other Caribbean
+Luxembourg
+Ireland
+Singapore
+Switzerland
+0
+10
+20
+30
+40
+50
+60
+1982
+90
+95
+2000
+05
+10 13
+1998
+04
+06
+08
+2002
+10
+12
+15
+0
+20
+40
+60
+80
+100
+Private rental
+Private leased by LA/HA*
+LA/HA*
+Hostel
+Bed & breakfast
+1
+COLOUR ORDER
+2
+3
+4
+5
+1
+2
+3
+4
+5
+6
+Alternative colour scheme for use 
+where categories are chronological 
+or where primary colour scheme 
+doesn’t work
+Foreign hoards
+The big shift
+Source: IMF
+*Forecast
+0
+2
+4
+6
+2002
+04
+06
+08
+10* 11*
+China
+Other
+developing
+countries
+Developing-country currency reserves
+$trn
+Emerging middle class
+Source: ILO
+*Excluding most Western developed countries    †Purchasing-power parity    ‡Estimate
+Working population by economic class, emerging and developing countries*, 2011$ at PPP†, bn
+0
+0.5
+1.0
+1.5
+2.0
+2.5
+3.0
+1991
+95
+2000
+05
+10
+ 15‡ 16‡
+Extremely poor
+less than $1.90
+Moderately poor
+$1.90 to $3.10
+Near poor
+$3.11 to $5
+Developing middle class
+$5.01 to $13
+Developed middle
+class and above over $13
+Tax havens’ share of US overseas
+corporate proﬁts, %
+Source: “The Hidden Wealth of Nations”, 
+by Gabriel Zucman, University of Chicago Press, 2015
+In limbo
+Source: DCLG
+*Local authorities
+and housing associations
+Households in temporary homes
+England, ’000
+COLOUR OVERIDES
+
+=== PAGE 17 ===
+chart types
+17
+Thermometer
+charts
+1
+COLOUR ORDER
+2
+3
+4
+5
+6
+2 lines
+Standard colour order
+dot terminals
+3 lines
+4 lines
+6 lines
+Use as alternative when
+lines are unclear
+Ilex will plot up to 6 colours but 
+any more than 4 categories is 
+probably too many and you 
+should have a rethink
+one
+two
+three
+four
+ﬁve
+six
+one
+two
+one
+two
+three
+one
+two
+three
+one
+two
+three
+four
+0
+100
+200
+300
+400
+Mathematics
+Economics
+Computer Science
+Business
+Biology
+Philosophy
+English
+Psychology
+History
+Communication
+0
+100
+200
+300
+400
+Mathematics
+Economics
+Computer Science
+Business
+Biology
+Philosophy
+English
+Psychology
+History
+Communication
+0
+100
+200
+300
+400
+Mathematics
+Economics
+Computer Science
+Business
+Biology
+Philosophy
+English
+Psychology
+History
+Communication
+0
+100
+200
+300
+400
+Mathematics
+Economics
+Computer Science
+Business
+Biology
+Philosophy
+English
+Psychology
+History
+Communication
+0
+100
+200
+300
+400
+Mathematics
+Economics
+Computer Science
+Business
+Biology
+Philosophy
+English
+Psychology
+History
+Communication
+Use of speciﬁc “adjective” per million words 
+in student reviews on RateMyProfessors.com*
+Use of speciﬁc “adjective” per million words 
+in student reviews on RateMyProfessors.com*
+Use of speciﬁc “adjective” per million words 
+in student reviews on RateMyProfessors.com*
+Use of speciﬁc “adjective” per million words 
+in student reviews on RateMyProfessors.com*
+Use of speciﬁc “adjective” per million words 
+in student reviews on RateMyProfessors.com*
+The horrible science
+The horrible science
+The horrible science
+The horrible science
+Source: Ben Schmidt, Northeastern University
+“Horrible”
+Source: Ben Schmidt, Northeastern University
+“Horrible”
+The horrible science
+Source: Ben Schmidt, Northeastern University
+“Horrible”
+Source: Ben Schmidt, Northeastern University
+“Horrible”
+Source: Ben Schmidt, Northeastern University
+“Horrible”
+
+=== PAGE 18 ===
+chart types
+18
+Scatter plot
+Corruption-perceptions index score, 2014
+100=least corrupt
+Open-data
+index score, latest
+100=most open
+0
+20
+40
+60
+80
+100
+0
+20
+40
+60
+80
+100
+Britain
+Denmark
+US
+India
+Colombia
+Sweden
+Mexico
+Singapore
+Divergent
+Sources: Freddie Mac; 
+US Bureau of Labour Statistics
+*At least 
+100,000 population
+United States, housing and employment
+Metro areas*, average annual change, %
+House prices
+Employment
+-2
+0
+2
+4
+6
+8
+20
+15
+10
+5
+0
+-5
+Q1 2012 - Q1 2016
+Q1 1990 - Q1 2007
+1
+COLOUR ORDER
+2
+3
+4
+5
+6
+Chart elements
+Bubble chart
+Standard scatter
+Connected scatter
+Standard dot
+4 categories
+4px width
+50% opacity
+use where general trend 
+is more important than 
+individual point
+highlight dot
+4px width
+100% opacity
+use to label outliers / 
+important data points
+Category dot
+0.3px stroke
+50% opacity ﬁll
+use for bubble charts 
+to diﬀerential colours
+trend lines
+1px stroke
+dashed 3px, 1px
+To avoid obscuring the connecting lines 
+and labels, axis lines can be broken
+sub title should summarise 
+chart, save speciﬁc units 
+for axis labels
+Same weight/colour 
+for x and y ticks
+use black for zero 
+baseline only
+On larger / complicated scatters, use explanatory 
+labels to make the correlation clear
+Where colour categories become diﬃcult to distinguish, 
+consider highlighting the most signiﬁcant part of the story
+Source: OECD
+Health spending and life expectancy at birth
+OECD countries
+Right nation
+Health expenditures per person 
+at purchasing-power parity, current prices, $’000 
+*Or latest
+Life expectancy,
+years
+70
+72
+74
+76
+78
+82
+84
+0
+2
+4
+6
+8
+1
+3
+5
+7
+9
+2003
+2013*
+2013 average 80.5
+2013 
+average 
+$3,453
+Germany
+United States
+France
+Britain
+Turkey
+Chile
+Japan
+-25
+-50
+0
+25
+50
+20
+30
+40
+50
+60
+70
+Sources: Atlas of US Presidential Elections; Census Bureau;
+IPUMS, University of Minnesota; Institute for Health Metrics
+and Evaluation; The Economist
+*Weighted index of obesity, diabetes,
+heavy drinking, physical exercise and
+life expectancy, 2010-12
+MORE REPUBLICAN
+LESS REPUBLICAN
+Vitality and the vote
+United States, health metrics against swing to Donald Trump
+By county
+Change in Republican margin
+over Democrats, 2012-16, % points
+Index of county health metrics*
+BETTER HEALTH
+WORSE HEALTH
+Northeast
+South
+Midwest
+West
+Region
+Voting
+eligible
+population
+-25
+-50
+0
+25
+50
+20
+30
+40
+50
+60
+70
+Sources: Atlas of US Presidential Elections; Census Bureau;
+IPUMS, University of Minnesota; Institute for Health Metrics
+and Evaluation; The Economist
+*Weighted index of obesity, diabetes,
+heavy drinking, physical exercise and
+life expectancy, 2010-12
+MORE REPUBLICAN
+LESS REPUBLICAN
+Vitality and the vote
+United States, health metrics against swing to Donald Trump
+By county
+Change in Republican margin over
+Democrats, 2012-16, % points
+Index of county health metrics*
+BETTER HEALTH
+WORSE HEALTH
+Voting
+eligible
+population
+Jeﬀerson, OH
+Knox, OH
+Midwest
+The best disinfectant
+Sources: Transparency International;
+Open Knowledge Foundation
+Corruption and open data
+
+=== PAGE 19 ===
+chart types
+19
+Tables
+42
+Chart elements
+Standard table
+Table with integrated charts
+With colour highlight 
+Germany
+€374
+€226
+€86
+€217
+Nil
+€275
+Sweden
+Hungary
+Britain
+United
+States
+Australia
+173,070
+75,090
+41,370
+31,260
+121,160
+8,960
+97,415
+40,015
+5,445
+26,055
+71,765†
+13,198†
+Country
+Minimum wait before 
+permitted to work
+Applications*
+Decisions made
+Mainly from
+%
+77
+9
+39
+30†
+19†
+3 months
+Syria 23
+Serbia / Kosovo 14
+Eritrea 8
+Syria 40 
+Stateless 10
+Eritrea 8
+Serbia / Kosovo 51
+Afghanistan 21
+Syria 16
+Eritrea 13 
+Pakistan 11
+Syria 8
+Mexico 12
+China 11
+El Salvador 8
+China 19‡
+India 13‡
+Pakistan 10‡
+6 months
+Immediately 
+Without restrictions
+9 months 
+12 months
+Most applicants cannot 
+work as they are in detention
+Working only in a 
+reception centre
+Only jobs where gov’t sees a 
+shortage (medics, engineers)
+In practice, 92% of 
+applicants wait longer
+Maximum
+headline econ sans cnd medium 7.5/9
+body econ sans cnd light 7.5/9
+paragraph space 4pt
+detail text 75k
+0.5px 100k
+0.3px 50k
+What to expect
+Asylum processes, selected countries, 2014
+Sources: UNHCR; government statistics; 
+The Economist
+*From UNHCR 2014 report
+†From UNHCR Statistical Database    ‡2012-13 ﬁgures
+*Figures may not sum
+due to rounding
+New stimulus measures 
+$bn
+Business tax cuts 
+70
+Infrastructure spending, state 
+and local government aid 
+140
+Unemployment insurance and training 
+62
+Payroll-tax cut 
+175
+ Total 
+447
+Paid for by 
+Limiting deductions for 
+upper-income earners 
+405
+Treating carried interest as ordinary income 
+18
+Limiting oil and gas company tax beneﬁts 
+40
+Removing corporate-jet tax breaks 
+3
+ Total* 
+467
+Obama’s jobs bill
+Source: White House
+Divided by a dozen
+Policy choices in our political proximity model 
+Social
+Which comes closest to your position on abortion?
+Would you support/oppose a constitutional
+amendment allowing states to ban gay marriage?
+Should gun-control laws be more or less strict
+than they are now?
+Economic
+Do you support/oppose raising the federal
+minimum wage to $15 per hour?
+What should be done to reduce the federal
+budget deﬁcit?
+Do you support/oppose a single-payer 
+health-care system?
+Should our taxes provide free college tuition?
+Foreign policy
+Do you think the US government should be doing
+more or less in its ﬁght against terrorism?
+Do you support/oppose sending ground combat
+troops to ﬁght IS in Iraq and Syria?
+Do you favour/oppose building a wall along the
+border between the United States and Mexico?
+Would you say NAFTA has had a positive/negative
+eﬀect on the US economy?
+Is the government doing enough to combat 
+climate change?
+Accepted
+%
+State benefits
+per month
+ 
+Value* 
+Date of
+Company 
+$bn 
+joining
+Greatest hits
+Largest Y Combinator-funded startups
+Sources: CB Insights;
+CrunchBase
+*Latest funding round
+Airbnb 
+$25.5 
+2009
+Rents out places 
+to stay for local hosts
+ 
+Dropbox 
+$10.0 
+ 2007
+File-sharing and 
+storage in the cloud
+ 
+Stripe 
+$5.0 
+2010
+Software for selling
+from within apps
+ 
+Zenefits 
+$4.5 
+ 2013
+Online HR and 
+payroll services
+ 
+Instacart 
+$2.0 
+2012
+Grocery collection 
+and delivery service
+ 
+Docker 
+$1.1 
+2010
+Platform to manage 
+distribution of software
+Use 75k text
+to diﬀerentiate
+explanatory text
+Use alternating row colours 
+to help with reading
+Where table data will beneﬁt 
+from visualising , use small 
+labelled bar charts etc. 
+Use colour highlight 
+with inverted text to 
+pull out key details
+3pt internal padding
+Which comes closest to your position on abortion?
+
+=== PAGE 20 ===
+chart types
+20
+Pie / doughnut
+Naan bigger
+NOTE: Use with caution.
+Should probably be abandoned
+in favour of stacked bar
+if over 4 categories
+1
+COLOUR ORDER
+2
+Other
+3
+4
+5
+6
+Standard colour order
+2
+1
+3
+4
+5
+6
+Rest of world
+453.8
+China* 156.4
+United States 72.1
+France 61.6
+India 57.0
+Spain 48.1
+Italy 40.9
+Germany 40.4
+Britain 34.4
+Japan 25.3
+Brazil
+25.3
+Total
+$1.02trn
+Rest of world
+38.1
+Britain
+7.5
+United States
+3.7
+Italy
+3.6
+China
+2.5
+France
+2.1
+India
+1.8
+Total
+$59.3bn
+Source: Tata
+Tata Steel 
+19.4
+Jaguar Land
+Rover 19.0
+Tata
+Consultancy
+Services 4.9
+TGB (drinks) 0.7
+Tata Chemicals 0.5
+Taj (hotels) 
+0.4
+Others 
+0.6
+Total
+45.4
+Tata’s workforce in Britain, September 2011 
+’000
+The scramble in Africa
+Sources: UNCTAD; IMF
+*Including Macau and Hong Kong
+Goods trade with Africa, 2013, $bn
+Foreign direct investment in Africa, 2012, $bn
+Where linking lines get too crowded, 
+key the labels with small colour block
+
+=== PAGE 21 ===
+chart styling
+21
+Double-scale
+charts
+Double scales can be good at showing correlations and are economical with space. 
+But they can also be confusing/misleading.  
+Here are some things to avoid when considering a double scale 
+If you cannot conform to the above rules try splitting the chart into panels or indexing the variables 
+Avoid breaking the 
+scales without good 
+reason
+If you are plotting above 
+and below a zero line 
+make the zero lines align
+Avoid mixing disparate 
+measures to force visual 
+correlation
+Index value + inverted scale
+misaligned baselines
+Broken scale distorts data
+Out of steam
+Source: Department for Transport
+Britain, railways
+1
+AXIS 1
+AXIS 2
+1
+COLOUR ORDER
+2
+2
+text
+Ten-year government-
+bond yields, %
+Quantifying QE
+Source: Thomson Reuters
+0
+1
+2
+3
+4
+5
+1.0
+1.1
+1.2
+1.3
+1.4
+Euro against the
+dollar, $ per €
+2014
+2015
+Euro area
+Italy
+1 line on each axis
+3 lines on left-hand axis
+line and column
+0
+10
+20
+30
+40
+50
+60
+70
+1955
+70
+80
+90
+2000
+14
+National rail track
+’000 km
+Passenger kilometres
+bn
+0
+10
+20
+30
+40
+50
+60
+70
+Privatisation begins
+Chavismo in action
+Sources: IMF; Reuters
+*Preliminary estimate
+Venezuela, % change on a year earlier
+-20
+-15
+-10
+-5
+0
+5
+10
+15
+20
+-800
+-600
+-400
+-200
+0
+200
+400
+600
+800
+2004
+06
+08
+10
+12
+14
+16*
+GDP
+Consumer prices, year-end
+Golden triangle
+Sources: Thomson Reuters; IMF
+0
+0.25
+0.50
+0.75
+1.00
+1.25
+0
+20
+40
+60
+80
+100
+1994
+2000
+05
+10
+15
+Total trilateral trade
+$trn
+Mexico
+Canada
+United States
+NAFTA countries’ exports
+to each other, % of total
+What lies beneath
+Source: BCG
+2002
+04
+06
+08
+10
+12
+14
+16
+60
+30
+0
+30
+60
+90
+120
+0
+30
+60
+90
+120
+150
+180
+Big oil companies’ enterprise 
+free cash ﬂow, $bn
+Oil price
+Brent, $ per barrel
+Use Econ Sans Cnd 
+Regular, instead of 
+light, for coloured 
+y-axis labels
+Always choose the axis 
+colour order that will 
+visually associate the 
+labels best with the 
+corresponding line
+The Zuma years
+Sources: Thomson Reuters; SACCI
+SACCI Business
+Conﬁdence Index,
+2015=100
+2008
+10
+09
+11
+12
+13
+14
+15 16
+90
+80
+100
+110
+120
+18
+15
+12
+9
+6
+Rand per $, inverted scale
+South Africa
+
+=== PAGE 22 ===
+chart styling
+22
+Blob heads
+A secondary data 
+variable added as 
+area-sized bubbles 
+or number boxes
+Can be used 
+with column or 
+thermometer charts 
+$bn
+Fill 
+c22.5 k15
+ 100% multiply
+Up in the air
+Source: GBTA
+Business travel spending, 2014
+% change on a year earlier
+The Big Mac index
+Sources: 
+McDonald’s; 
+The Economist
+*At market exchange rates
+(Jan 11th 2017)    †Average of four cities
+‡Weighted average of member countries
+§Average of ﬁve cities    **Maharaja Mac
+Local currency under (-) / over (+) valuation 
+against the dollar, %
+Starting small
+Source: World Federation
+of Exchanges
+*West African
+regional exchange
+Number of companies
+listed on stock exchanges 
+October 2016
+Where bubbles are large enough 
+ﬁt numbers inside
+To avoid awkward alignment, if 
+most numbers won’t ﬁt, put them 
+outside bubble and align text right 
+If number range or positive / negative 
+values rule out bubbles, revert to 
+equal-sized number blocks 
+Bubble
+Number block
+Text blocks 
+numbers
+Arrow placement
+-80 -60 -40 -20
+0
+20
+40
+6.4
+6.4
+5.8
+5.3
+5.1
+5.1
+4.1
+3.8
+3.3
+3.0
+2.8
+2.6
+2.5
+2.3
+2.2
+12pt height / 6pt horizontal padding
+Horizontally or vertically centred
+Minimum 6pt in from box edge
+if necessary
+23pt height / 6pt horizontal padding
+1 line 
+2 line 
+ECB announces QE
+ECB announces QE
+ECB announces QE
+ECB announces QE
+ECB announces 
+QE beginning
+-10 -5
+0
+5
+10 15
+China
+India
+Germany
+Spain
+United States
+Britain
+South Korea
+Canada
+Brazil
+France
+Italy
+Australia
+Japan
+Netherlands
+Russia
+261
+26
+58
+18
+288
+44
+32
+23
+32
+36
+31
+21
+62
+18
+21
+Switzerland
+Norway
+Sweden
+Brazil
+United States†
+Euro area‡
+Britain
+Japan
+Turkey
+China§
+Vietnam
+India**
+Mexico
+Russia
+Big Mac price*, $
+January 2016
+January 2017
+0
+100
+200
+300
+400
+Johannesburg
+Nigeria
+Mauritius
+Nairobi
+Namibia
+BRVM*
+943
+29.3
+6.2
+19.9
+2.3
+11.6
+Domestic
+Foreign
+Market cap, $bn
+Econ Sans Cnd reg 7.5/9.5pt
+Box: c22.5 k15  100% multiply 
+Econ Sans Cnd reg 7pt
+
+=== PAGE 23 ===
+chart styling
+23
+Timelines
+Use thin alternating-colour bars to mark out time 
+periods. Key repeated events, like coup attempts, 
+to avoid duplicating text labels
+For timelines tied to a 
+dataset, break the y-axis 
+lines to avoid chart area 
+becoming too crowded 
+Where colour is being used 
+to categorise data, use grey 
+for timeline labels
+To distinguish from plotted 
+data, use dotted lines for 
+labels on bar charts 
+Non-data timelines
+Data timeline
+Label styles
+I wanna be adored
+Sources: Levada Centre; The Economist
+Approval rating of Vladimir Putin and the Russian government, % polled
+More than an oil giant
+Sources: World Bank; 
+Thomson Reuters
+Iran
+0
+2
+4
+6
+0
+100
+200
+300
+Marcos
+Corazon
+Aquino
+Wife of Benigno Jr
+Ramos
+Estrada Gloria 
+Macapagal
+Arroyo
+Benigno
+Aquino III
+Son of Corazon 
+& Benigno Jr
+Duterte President Elect
+Marcos imposes
+martial law
+Ms Arroyo
+arrested
+Joseph Estrada resigns
+during impeachment 
+proceedings
+Estrada
+convicted of
+corruption
+Corazon Aquino
+dies
+Asian
+ﬁnancial
+crisis
+starts
+Ferdinand
+Marcos
+elected
+New constitution
+Duterte ﬁrst
+elected mayor
+of Davao
+Coup attempts
+Marcos ousted
+“People
+  Power”
+revolution
+Benigno Aquino Jr.
+assassinated on
+return from US exile
+1965
+70
+75
+80
+85
+90
+95
+2000
+05
+10
+1516
+The Philippines
+Selected events
+Source: The Economist
+PRESIDENTS
+Re-elected
+Iranian revolution. 
+Shah overthrown
+Iran signs 
+Non-proliferation 
+Treaty
+USS Vincennes shoots 
+down Iranian civil airliner
+Iran/Iraq war
+Iran branded part 
+of “axis of evil”
+US 
+invades 
+Iraq
+Obama oﬀers to “extend a hand” to Iran
+US/EU oil sanctions
+IS takes 
+Mosul
+US invades Afghanistan
+*Banisadr    †Ali Rajai
+Rafsanjani
+Khatami
+Ahmadinejad
+Rouhani
+Khamenei
+†
+*
+Reza Shah Pahlavi
+Ruhollah Khomeini Ali Khamenei
+Oil production, m bpd 
+Presidents
+Supreme leaders
+2000
+01
+02
+03
+04
+05
+06
+07
+08
+09
+10
+11
+12
+13
+14
+15
+16
+0
+25
+50
+75
+100
+Second
+Chechen
+War
+Moscow
+Theatre 
+siege
+Beslan 
+School
+Siege
+Start of Syrian 
+civil war
+Anti-
+Government
+Protests in
+Bolotnaya
+Annexation
+of Crimea
+Rouble
+collapses
+ “Great recession”
+Financial crisis; GDP shrinks 8%
+Georgia war
+PM
+Putin is:
+PRIME MINISTER
+PRESIDENT
+PRESIDENT
+Parliamentary election
+Presidential election
+1965
+70
+75
+80
+85
+90
+95
+2000
+05
+10
+15
+GDP, $bn
+2005 prices
+Vladimir Putin
+Russian
+government
+0.5px stroke,  arrowhead 21, 50%
+Causation of a caliphate
+Civilian death toll, ‘000:
+0
+1
+2
+3
+4
+5
+6
+Iraq
+Syria
+Syrian uprising
+begins
+Haider al-Abadi replaces Maliki. American-led coalition
+starts bombing IS in Iraq, and later in Syria
+1998
+99
+2000
+01
+02
+03
+04
+05
+06
+07
+08
+09
+10
+11
+13
+12
+14
+15
+Sources: Iraq Body Count; Violation Documentation Centre in Syria; The Economist
+Withdrawal of American
+forces from Iraq
+Boko Haram declare allegiance to IS
+Al-Qaeda bombs American 
+embassies in Tanzania and Kenya
+Abu Musab al-Zarqawi 
+founds jihadist group in Iraq 
+Zarqawi pledges allegiance
+to Bin Laden, forming
+al-Qaeda in Iraq
+Islamic State of
+Iraq (ISI) founded
+ISI founds Jabhat
+al-Nusra in Syria
+IS takes Mosul, races towards Baghdad and declares a caliphate
+Islamic State of Iraq and al-Sham (ISIS) founded. Splits with
+Jabhat al-Nusra and al-Qaeda, then captures Raqqa in eastern Syria
+Egypt bombs IS aﬃliate in Libya
+Bashar Assad 
+comes to 
+power in Syria
+American-led invasion of Iraq.
+Saddam Hussein toppled.
+Assad accused of helping
+foreign ﬁghters enter Iraq
+Nuri al-Maliki
+comes to power
+as Iraq’s PM
+ Zarqawi killed in
+American bombing
+Start of American 
+surge in Iraq
+Speciﬁc date events
+Time periods
+
+=== PAGE 24 ===
+chart styling
+24
+Timelines
+mobile versions
+With often-lengthly 
+text labels in ﬁxed 
+positions on the chart, 
+timelines present a 
+unique challenge 
+for condensing to 
+mobile.
+Mexican waves
+Sources: Global Financial Data; Thomson Reuters; Haver Analytics
+*First new (non-restructured) bond issued for 50 years
+Mexico, selected government-bond yields, %
+Mexican waves
+Sources: Global Financial Data; Thomson Reuters; Haver Analytics
+*First new (non-restructured) bond issued for 50 years
+Mexico, selected government-bond yields, %
+Mexican waves
+Mexico, selected government-bond yields, %
+Rotate timeline and run 
+vertically on mobile. 
+Works well where labels 
+are relatively evenly spaced 
+and where the data relates 
+to speciﬁc labels, i.e. oil 
+nationalisation in this 
+example
+Compress horizontally, 
+number labels on chart
+and list below.
+3-column print timeline
+Mobile option 1
+Mobile option 2
+web desktop version at 332pt
+1824 30
+40
+50
+60
+70
+80
+90
+1900
+10
+20
+30
+40
+50
+60
+70
+80
+90
+2000
+10 15
+Periods of default on external debt
+First Mexican
+Foreign Loan
+Porﬁrio Díaz 
+Becomes President
+1914 
+Default
+Peso
+Crisis
+Debt
+Crisis
+1929
+Crash
+Mexican Oil
+Nationalisation
+Mexican-
+American war
+Reform
+war
+French
+occupa-
+tion
+Mexican
+revolution
+1824
+40
+50
+60
+70
+80
+90
+1900
+10
+20
+30
+40
+50
+60
+70
+80
+90
+2000
+10 15
+Periods of default on external debt
+First Mexican
+Foreign Loan
+Porﬁrio Díaz 
+Becomes President
+1914 
+Default
+Peso
+Crisis
+Debt
+Crisis
+1929 Crash
+Mexican Oil
+Nationalisation
+Mexican-
+American war
+Reform
+war
+French
+occupation
+Mexican
+revolution
+1824
+50
+1900
+50
+2000 15
+Periods of default on external debt
+log scale
+log scale
+log
+scale
+1
+2
+4
+10
+20
+40
+100
+200
+400
+1
+2
+4
+10
+20
+40
+100
+200
+400
+1
+2
+4
+10
+20
+40
+100
+200
+400
+Sources: Global Financial Data; 
+Thomson Reuters; 
+Haver Analytics
+*First new
+(non-restructured)
+bond issued for 50 years
+First Mexican Foreign Loan
+Porfirio Díaz Becomes President
+Mexican Oil Nationalisation
+Debt Crisis
+Peso Crisis
+Periods of war / revolution
+2
+1
+1
+2
+3
+4
+5
+3
+4 5
+Mexican waves
+Mexico, selected government-bond yields, %
+Sources: Global Financial Data; 
+Thomson Reuters; 
+Haver Analytics
+*First new
+(non-restructured)
+bond issued for 50 years
+1824
+40
+50
+60
+70
+80
+90
+1900
+10
+20
+30
+40
+50
+60
+70
+80
+90
+2000
+15
+First Mexican
+Foreign Loan
+Porﬁrio Díaz 
+Becomes President
+1914 Default
+Peso Crisis
+Debt Crisis
+1929 Crash
+Mexican Oil
+Nationalisation
+Mexican-American war
+Reform war
+French occupation
+Mexican
+revolution
+log scale
+1
+10
+100
+400
+1
+10
+100
+400
+Periods of default on external debt
+
+=== PAGE 25 ===
+chart styling
+Miscellaneous styles
+Number boxes
+Highlight panels
+Index charts
+Broken scales
+Highlight labels
+25
+1
+1
+Mutti’s malaise
+Source: ARD DeutschlandTREND/infratest dimap
+German approval of Angela Merkel, % polled
+Mutti’s malaise
+Source: ARD DeutschlandTREND/infratest dimap
+German approval of Angela Merkel, % polled
+Mutti’s malaise
+Source: ARD DeutschlandTREND/infratest dimap
+German approval of Angela Merkel, % polled
+Who will ﬁll the jobs?
+Source: United Nations 
+Population Division
+*Aged 15-64
+Working-age population*, 2015=100
+Easing the pain
+Source: CBO
+*Adjusted for household size
+United States, median real household 
+income*, 1979=100
+Westinghouse woes
+Source: Thomson Reuters
+Toshiba, share price, yen
+For secondary 
+information, like 
+forecast or 
+estimate, use 
+neutral style 
+Use when breaking y-axis on line, thermometer and scatter charts
+not needed on indexed, negative scale or inverted scales
+DON’T BREAK SCALE ON BAR/COLUMN CHARTS - USE THERMOMETER INSTEAD
+Use to mark speciﬁc dates and points on axis
+For highlights that 
+are central to the 
+message of the 
+chart ,use colour 
+If there are only 
+1 or 2 points, and they 
+are key to the chart 
+meaning, use colour/ 
+medium font
+For web-only 
+charts, use print 
+bkgd colour for 
+highlights
+Use where multiple charts are 
+referenced in text
+Ten-year government-bond yields, %
+Source: Thomson Reuters
+Years since start
+0
+2
+4
+6
+8
+1
+5
+10
+13
+Period beginning:
+January 1989 (Japan)
+January 1999 (US)
+Where Tokyo leads
+2005
+07
+09
+11
+13
+15 16
+30
+40
+50
+60
+70
+80
+Euro
+Crisis
+World war II
+starts
+Migrant
+Crisis
+c10, m70, y50
+30% tint
+2005
+07
+09
+11
+13
+15 16
+30
+40
+50
+60
+70
+80
+Euro
+Crisis
+Migrant
+Crisis
+2005
+07
+09
+11
+13
+15 16
+30
+40
+50
+60
+70
+80
+20
+40
+60
+80
+100
+120
+1950
+75
+2000
+25
+50
+75
+2100
+China
+Japan
+United
+States
+European
+Union
+FORECAST
+LIGHT 6.5PT
+UPPERCASE
+90
+100
+110
+120
+130
+140
+150
+1979
+85
+90
+95
+2000
+05
+10 13
+Market income
+plus transfers
+plus transfers less taxes
+2015
+16
+17
+0
+100
+200
+300
+400
+500
+600
+Accounting 
+scandal
+World war II
+ends
+CB&I Stone
+& Webster
+write-down
+label text 
+econ sans cnd light
+7/7pt
+$4.6bn
+record loss
+Westinghouse
+Write-down
+CEO resigns
+13
+15 16
+30
+40
+6pt
+1pt
+5pt diameter black 
+circle on index point
+0.5pt red line on 
+index line
+c12, m80, y60, k0
+GREY c15, k10 
+10pt
+Econ sans bold 7.5pt
+c22.5 / k15
+10pt
+0.5pt stroke
+arrow 21
+broken scale symbol
+black 0.4 stroke 
+6pt width
+centred between baseline
+and ﬁrst y-axis tick
+x axis baseline ends 
+at last tick mark
+
