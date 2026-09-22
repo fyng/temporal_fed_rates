@@ -37,7 +37,7 @@ SIZE = "col3"
 
 TITLE = "Past performance"
 SUBTITLE = "Scores of Fed decision models, by inputs used, Dec 2005-Sep 2026"
-SUBTITLE_2 = "Higher is better, except probability score; dashed line = baseline of past shares"
+SUBTITLE_2 = "Dashed line = baseline of past shares of each decision"
 SOURCE = "Sources: Federal Reserve; FRED; our analysis"
 FOOTNOTE = (
     "*Ranked probability score. Areas and F1 are one class against the rest, "
@@ -57,12 +57,16 @@ _ROWS: tuple[tuple[str, str], ...] = (
 _FOCUS = "history"
 _PRIOR = "expanding_prior"
 
+_LOWER_BETTER = frozenset({"rps"})
+_ARROW_LEN = 70  # px from label to arrow tip
+_ARROW_DROP = 16  # px below the axis line, level with the tick labels
+
 # (metric, panel title, axis range, tick values) left to right.
 _PANELS: tuple[tuple[str, str, tuple[float, float], tuple[float, ...]], ...] = (
-    ("rps", "Probability score*", (0, 0.124), (0, 0.05, 0.1)),
-    ("auroc_macro", "ROC area", (0, 1.02), (0, 0.5, 1)),
-    ("auprc_macro", "Precision-recall area", (0, 1.02), (0, 0.5, 1)),
-    ("f1_macro", "F1 score", (0, 1.02), (0, 0.5, 1)),
+    ("rps", "Probability score*", (0, 0.124), (0, 0.1)),
+    ("auroc_macro", "ROC area", (0, 1.02), (0, 1)),
+    ("auprc_macro", "Precision-recall area", (0, 1.02), (0, 1)),
+    ("f1_macro", "F1 score", (0, 1.02), (0, 1)),
 )
 
 # Confirmed against the current record; the draft's prior row (0.0835) is
@@ -165,6 +169,36 @@ def _reanchor_tag(fig: go.Figure, size: str) -> None:
             shape.x1 = x0 + tag_w / pw
             shape.y0 = y_top - tag_h / ph
             shape.y1 = y_top
+
+
+def _better_arrows(fig: go.Figure) -> None:
+    """Mark the better direction on each panel's x axis, in the tick row.
+
+    The arrow fills the gap between the two end tick labels: towards zero
+    for the probability score, towards one for the rest.
+
+    Args:
+        fig: Figure with the panel x axes in place.
+    """
+    for col, (metric, _, _, _) in enumerate(_PANELS, start=1):
+        lower = metric in _LOWER_BETTER
+        fig.add_annotation(
+            xref=f"x{col if col > 1 else ''} domain",
+            yref="paper",
+            x=0.08 if lower else 0.9,
+            y=0,
+            yshift=-_ARROW_DROP,
+            ax=_ARROW_LEN if lower else -_ARROW_LEN,
+            ay=0,
+            text="Better",
+            showarrow=True,
+            arrowhead=2,
+            arrowsize=0.9,
+            arrowwidth=0.9,
+            arrowcolor=TEXT,
+            xanchor="left" if lower else "right",
+            font=_font("annotation"),
+        )
 
 
 def build_fig() -> go.Figure:
@@ -280,6 +314,7 @@ def build_fig() -> go.Figure:
     for ann in fig.layout.annotations:
         if ann.xref == "paper" and ann.x == 0:
             ann.x = left
+    _better_arrows(fig)
     _reanchor_tag(fig, SIZE)
     for col, (_, _, rng, ticks) in enumerate(_PANELS, start=1):
         fig.update_xaxes(
