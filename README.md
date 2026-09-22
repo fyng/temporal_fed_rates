@@ -1,6 +1,6 @@
 # Motivations and Goals
 
-This repo analyzes and plots economics data surrounding the Fed's decision to adjust the Fed funds rate.
+This repo analyzes and plots economics data surrounding the Fed's decision to adjust the Fed funds rate across the last 30 years.
 
 Besides the obvious goal of explaining patterns in the data, this talk is motivated by a few meta-questions:
 
