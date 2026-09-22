@@ -34,21 +34,33 @@ We also lag every input by a month. The committee sets rates knowing last month'
 
 The first model is the standard one. The Fed picks a target for its rate based on inflation and slack in the economy, then moves only part of the way towards it at each step:
 
-```text
-i_t = rho * i_(t-1) + (1 - rho) * (r* + pi_t + a*(pi_t - 2) + b*gap_t) + e_t
-```
+$$
+i_t = \rho\, i_{t-1} + (1-\rho)\left[r^* + \pi_t + a\,(\pi_t - \pi^*) + b\, g_t\right] + \varepsilon_t
+$$
 
-Here `rho` measures inertia, `a` the response to inflation above 2% and `b` the response to slack. We estimate it on quarterly data from 1983, with standard errors robust to the correlation between neighbouring quarters.
+Here $i_t$ is the policy rate, $\pi_t$ core inflation, $\pi^* = 2\%$ the Fed's target, $r^*$ the neutral real rate and $g_t$ slack. $\rho$ measures inertia. $a$ is the response to inflation beyond one-for-one, so the rate rises by $1 + a$ points in the long run for each point of inflation, and $b$ is the response to slack. Subtracting $r^* + \pi^*$ from both sides gives the form we estimate by least squares:
+
+$$
+i_t - r^* - \pi^* = c_1\,(i_{t-1} - r^* - \pi^*) + c_2\,(\pi_t - \pi^*) + c_3\, g_t + \varepsilon_t
+$$
+
+so that
+
+$$
+\rho = c_1, \qquad a = \frac{c_2}{1-\rho} - 1, \qquad b = \frac{c_3}{1-\rho}.
+$$
+
+We estimate it on quarterly data from 1983, with standard errors robust to the correlation between neighbouring quarters.
 
 | | Estimate | Standard error |
 | --- | --- | --- |
-| rho, inertia | 0.934 | 0.023 |
-| a, inflation response | 1.04 | 0.78 |
-| b, slack response | 1.69 | 0.58 |
+| $\rho$, inertia | 0.934 | 0.023 |
+| $a$, inflation response | 1.04 | 0.78 |
+| $b$, slack response | 1.69 | 0.58 |
 
-n = 175, R² = 0.972.
+$n = 175$, $R^2 = 0.972$.
 
-**Inertia and the response to slack are clear. The response to inflation is not.** It has the right sign and roughly the size John Taylor proposed, but lies just 1.3 standard errors from zero. More care with the data will not fix this. The model recovers `a` and `b` by dividing by 1 − rho, and as rho nears one the divisor shrinks and takes the precision with it. The coefficients estimated before that division are all tight: 0.934 (0.023) on the lagged rate, 0.135 (0.056) on inflation and 0.112 (0.030) on slack.
+**Inertia and the response to slack are clear. The response to inflation is not.** It has the right sign but lies just 1.3 standard errors from zero. More care with the data will not fix this. The model recovers $a$ and $b$ by dividing by $1-\rho$, and as $\rho$ nears one the divisor shrinks and takes the precision with it. The coefficients estimated before that division are all tight: $c_1 = 0.934$ (0.023), $c_2 = 0.135$ (0.056) and $c_3 = 0.112$ (0.030).
 
 ![Signal failure](../figures/production/specification_grid.png)
 
@@ -56,19 +68,21 @@ Shortening the sample makes things worse:
 
 | Sample | Monthly | Quarterly |
 | --- | --- | --- |
-| 1961 on | rho .969, a 0.37 (.61) | rho .910, a 0.38 (.47) |
-| 1983 on | rho .979, a 1.37 (.84) | rho .934, a 1.04 (.78) |
-| 1994 on | rho .987, a **4.01** (3.67) | rho .943, a 1.50 (1.95) |
+| 1961 on | $\rho = 0.969$, $a = 0.37$ (0.61) | $\rho = 0.910$, $a = 0.38$ (0.47) |
+| 1983 on | $\rho = 0.979$, $a = 1.37$ (0.84) | $\rho = 0.934$, $a = 1.04$ (0.78) |
+| 1994 on | $\rho = 0.987$, $a = \mathbf{4.01}$ (3.67) | $\rho = 0.943$, $a = 1.50$ (1.95) |
 
-The monthly estimate from 1994 implies that the Fed raises rates by four points for every point of excess inflation. That is not a finding; it is division by almost zero. Monthly data make the problem worse. The Fed meets eight times a year and usually holds, so most months show no change and rho is pushed towards one. We report quarterly estimates, as Taylor, Richard Clarida, Jordi Galí, Mark Gertler and Glenn Rudebusch did.
+Standard errors in brackets.
 
-**The model finds one real break.** Across rolling ten-year windows ending before 1983, the median response to inflation is −0.61. For windows ending between 1983 and 1999 it is +0.78, and the estimate holds steady. This reproduces the result of Clarida, Galí and Gertler on our data: the Fed did not respond to inflation before Paul Volcker, and did afterwards.
+The monthly estimate from 1994 implies that, in the long run, the Fed raises rates by $1 + a \approx 5$ points for every point of inflation. That is not a finding; it is division by almost zero. Monthly data make the problem worse. The Fed meets eight times a year and usually holds, so most months show no change and $\rho$ is pushed towards one. We report quarterly estimates, as Taylor, Richard Clarida, Jordi Galí, Mark Gertler and Glenn Rudebusch did.
 
-After 2000 the estimate falls apart. Median rho climbs from 0.93 in the 1983-99 windows to 0.98, and the division by 1 − rho throws 54% of windows ending since 2000 off the chart's scale, some as far as ±560. Since 2000 the rolling windows cannot pin down the Fed's response to inflation at all.
+**The model finds one real break.** Across rolling ten-year windows ending before 1983, the median $a$ is −0.61: the Fed raised rates by less than inflation rose, so real rates fell as prices climbed. For windows ending between 1983 and 1999 the median is +0.78, and the estimate holds steady: the Fed raised rates by more than inflation, so real rates rose. This reproduces the result of Clarida, Galí and Gertler on our data: the Fed did not lean against inflation before Paul Volcker, and did afterwards.
+
+After 2000 the estimate falls apart. Median $\rho$ climbs from 0.93 in the 1983-99 windows to 0.98, and the division by $1-\rho$ throws 54% of windows ending since 2000 off the chart's scale, some as far as ±560. Since 2000 the rolling windows cannot pin down the Fed's response to inflation at all.
 
 ![The Volcker break](../figures/production/rolling_inflation_response.png)
 
-**Estimates for individual chairmen fail.** For every chairman since Alan Greenspan, rho comes out at or above one and the division blows up: Jerome Powell's inflation response is −20.2, with a standard error of 66. Only Greenspan's 221 months yield usable figures: rho of 0.949, `a` of 0.75 and `b` of 2.38. The code declines to report the others.
+**Estimates for individual chairmen fail.** For every chairman since Alan Greenspan, $\rho$ comes out at or above one and the division blows up: Jerome Powell's $a$ is −20.2, with a standard error of 66. Only Greenspan's 221 months yield usable figures: $\rho = 0.949$, $a = 0.75$ and $b = 2.38$. The code declines to report the others.
 
 **Against a random walk, the model ties.** Forecasting one month ahead, its root-mean-square error is 0.548 against 0.539 for simply assuming no change, a ratio of 1.015. It wins only after 2000, with a ratio of 0.982. That is almost built in: a rate that does not move in most months is nearly a random walk over a month. We report it to be clear that the model barely beats a naive guess.
 
@@ -123,5 +137,5 @@ It does show that, to predict the Fed's next move, its recent behaviour tells yo
 
 ## Caveats
 
-- The neutral interest rate, r\*, is fixed at 2%. A time-varying estimate from Thomas Laubach and John Williams, later with Kathryn Holston, is available in the code but untested in these models.
+- The neutral real rate, $r^*$, is fixed at 2%. A time-varying estimate from Thomas Laubach and John Williams, later with Kathryn Holston, is available in the code but untested in these models.
 - Records of dissenting votes start in March 2002. Earlier dissents sit only in the minutes, so dissent is not an input.

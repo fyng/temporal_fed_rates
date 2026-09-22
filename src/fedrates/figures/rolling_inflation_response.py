@@ -28,7 +28,7 @@ TITLE = "The Volcker break"
 SUBTITLE = "Fed response to inflation, 10-year rolling estimate*"
 SOURCE = "Sources: Federal Reserve; FRED; our analysis"
 FOOTNOTE = (
-    "*Change in the fed funds rate per point of inflation, in the long run; "
+    "*Long-run rise in the fed funds rate per point of inflation, beyond one-for-one; "
     "circles mark windows off the scale, which reach ±560"
 )
 
