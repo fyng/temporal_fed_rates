@@ -20,6 +20,8 @@ The committee meets eight times a year, about six weeks apart. Each meeting ends
 
 The chairman began holding press conferences in April 2011, at first four times a year. Since January 2019 one has followed every meeting.
 
+![Who does what](../figures/production/who_does_what.png)
+
 ## How it works
 
 The Fed does not, strictly, set the fed-funds rate. It sets a price that it does not charge, in a market where it does not trade. And the way it does so has changed completely since 2008.
