@@ -338,6 +338,48 @@ def test_evaluate_prior_rps_hand_derivation() -> None:
     assert res["expanding_prior"]["accuracy"] == pytest.approx(0.5)
 
 
+def test_evaluate_balanced_metrics_perfect_and_constant() -> None:
+    """Perfect probabilities score 1 everywhere; always-hold scores chance."""
+    y = pd.Series(
+        pd.Categorical(
+            ["cut25", "hold", "hold", "hold", "hike25", "hold"],
+            categories=list(CLASSES), ordered=True,
+        )
+    )
+    proba = np.eye(5)[np.asarray(y.cat.codes)]
+    res = evaluate(y, proba)
+    for key in ("auroc_macro", "auprc_macro", "f1_macro", "balanced_accuracy"):
+        assert res["model"][key] == pytest.approx(1.0)
+    hold = res["constant_hold"]
+    assert hold["accuracy"] == pytest.approx(4 / 6)
+    assert hold["auroc_macro"] == pytest.approx(0.5)
+    # AP of a constant score is the class prevalence: (1/6 + 4/6 + 1/6) / 3
+    assert hold["auprc_macro"] == pytest.approx(1 / 3)
+    assert hold["balanced_accuracy"] == pytest.approx(1 / 3)
+    # F1 is 0.8 on hold (precision 4/6, recall 1) and 0 on the two cuts/hikes
+    assert hold["f1_macro"] == pytest.approx(0.8 / 3)
+
+
+def test_evaluate_balanced_metrics_skip_absent_classes() -> None:
+    """Classes absent from y_true score NaN and drop out of the macro average."""
+    y = pd.Series(
+        pd.Categorical(["hold", "cut25", "hold", "cut25"], categories=list(CLASSES), ordered=True)
+    )
+    p = np.array([
+        [0.0, 0.2, 0.8, 0.0, 0.0],
+        [0.0, 0.7, 0.3, 0.0, 0.0],
+        [0.0, 0.4, 0.6, 0.0, 0.0],
+        [0.0, 0.6, 0.4, 0.0, 0.0],
+    ])
+    res = evaluate(y, p)["model"]
+    for name in ("cut50+", "hike25", "hike50+"):
+        assert math.isnan(res[f"auroc_{name}"])
+        assert math.isnan(res[f"auprc_{name}"])
+    assert res["auroc_cut25"] == pytest.approx(1.0)
+    assert res["auroc_macro"] == pytest.approx(1.0)
+    assert res["f1_macro"] == pytest.approx(1.0)
+
+
 # --- Walk-forward ---------------------------------------------------------------
 
 
@@ -416,7 +458,8 @@ def test_ablation_structure_synthetic() -> None:
     X = features(_monthly_frame(_month_starts(dates)), _meeting_frame(dates, _SIZES))
     y = labels(_meeting_frame(dates, _SIZES))
     table = ablation(X, y, min_train=6)
-    assert list(table.columns) == ["spec", "kind", "k", "kappa", "rps", "log_loss", "accuracy"]
+    assert list(table.columns[:7]) == ["spec", "kind", "k", "kappa", "rps", "log_loss", "accuracy"]
+    assert {"auroc_macro", "auprc_macro", "f1_macro", "balanced_accuracy"} <= set(table.columns)
     models = table[table["kind"] == "model"]
     assert list(models["spec"]) == list(SPECS)
     assert list(models["k"]) == [len(SPECS[s]) for s in SPECS]

@@ -1,213 +1,127 @@
 # What moves the Fed
 
-Two models, one answer. The Federal Reserve's decisions are explained almost
-entirely by what the Fed just did. Measured economic conditions — inflation,
-slack, financial stress, the prescriptions of the policy rules the Fed itself
-tabulates — add close to nothing once you know the recent path of the rate.
+The best guide to what the Federal Reserve will do next is what it has just done. Once you know the recent path of interest rates, inflation, unemployment and financial stress add nothing to a forecast, and the policy rules the Fed calculates for its own meetings add little.
 
-We did not set out to show this. We built one model of the level of the rate
-and a second, unrelated, of the direction of each decision. They disagree about
-almost everything except the conclusion.
-
-![Thirty years of decisions](../figures/production/target_rate_history.png)
+We did not set out to show this. We built two unrelated models, one of the level of the Fed's target rate and one of the direction of each decision. They disagree about nearly everything except that conclusion.
 
 ## The record
 
-271 decisions, February 4th 1994 to September 16th 2026. Two thirds are holds.
+The Federal Open Market Committee, the Fed's rate-setting body, made 271 decisions between February 4th 1994 and September 16th 2026. Two-thirds were holds.
 
 | Decision | Count | Share |
-|---|---|---|
+| --- | --- | --- |
 | Cut, 50bp or more | 19 | 7% |
 | Cut, 25bp | 21 | 8% |
 | Hold | 179 | 66% |
-| Hike, 25bp | 41 | 15% |
-| Hike, 50bp or more | 11 | 4% |
+| Rise, 25bp | 41 | 15% |
+| Rise, 50bp or more | 11 | 4% |
 
-That 66% is the central difficulty. A model that always says "hold" is right
-two times in three, so accuracy measures nothing. Everything below is scored
-on quadratic-weighted kappa and the ranked probability score, which reward
-getting the *distribution* right and punish mistakes in proportion to how far
-apart the classes are.
+(A basis point, bp, is a hundredth of a percentage point.)
 
-Every feature is lagged one month behind its meeting. The committee met on
-date *d* knowing the previous month's prices, not that month's: CPI for month
-*m* is published in the middle of month *m+1*. A naive as-of join hands the
-model data that did not exist on the day.
+That 66% is the central difficulty. A model that always says "hold" is right two times in three, so accuracy tells you little. We therefore use scores that give the rare decisions their due:
+
+- **Weighted kappa** measures agreement with the actual decisions beyond what chance would give, and punishes a miss more the further it lands from the truth.
+- **The ranked probability score** rewards a model for putting its probability on the right outcome and on outcomes near it. Lower is better.
+- **The area under the ROC curve** asks, for each kind of decision, how often the model ranks a meeting that took it above one that did not. Always saying hold scores 0.5.
+- **The area under the precision-recall curve** asks the same question but punishes false alarms on rare decisions harder. Always saying hold scores the share of each decision, 0.2 on average.
+- **F1** balances how many of each decision the model catches against how many of its calls are right.
+
+The last three are computed for each of the five kinds of decision against the rest and then averaged, so a 25bp cut counts as much as a hold.
+
+We also lag every input by a month. The committee sets rates knowing last month's figures, not this month's: consumer prices for one month appear only in the middle of the next. Matching each meeting to data dated the same month hands the model figures that did not yet exist.
 
 ## Model one: the level of the rate
 
-The standard inertial reaction function. The Fed picks a target from inflation
-and slack, then moves only part of the way there:
+The first model is the standard one. The Fed picks a target for its rate based on inflation and slack in the economy, then moves only part of the way towards it at each step:
 
-```
+```text
 i_t = rho * i_(t-1) + (1 - rho) * (r* + pi_t + a*(pi_t - 2) + b*gap_t) + e_t
 ```
 
-Estimated quarterly from 1983, with Newey-West standard errors.
+Here `rho` measures inertia, `a` the response to inflation above 2% and `b` the response to slack. We estimate it on quarterly data from 1983, with standard errors robust to the correlation between neighbouring quarters.
 
-| | Estimate | HAC s.e. |
-|---|---|---|
+| | Estimate | Standard error |
+| --- | --- | --- |
 | rho, inertia | 0.934 | 0.023 |
 | a, inflation response | 1.04 | 0.78 |
 | b, slack response | 1.69 | 0.58 |
 
 n = 175, R² = 0.972.
 
-**The inertia is real and the slack response is real. The inflation response is
-not identified.** It is right-signed and Taylor-sized, and it is also 1.3
-standard errors from zero. This is not a data problem that more care would fix.
-`a` and `b` are recovered as c2/(1−rho) and c3/(1−rho); as rho approaches one
-that divisor collapses and takes the precision with it. The reduced-form
-coefficients, which need no division, are all tightly estimated: c1 = 0.934
-(0.023), c2 = 0.135 (0.056), c3 = 0.112 (0.030).
+**Inertia and the response to slack are clear. The response to inflation is not.** It has the right sign and roughly the size John Taylor proposed, but lies just 1.3 standard errors from zero. More care with the data will not fix this. The model recovers `a` and `b` by dividing by 1 − rho, and as rho nears one the divisor shrinks and takes the precision with it. The coefficients estimated before that division are all tight: 0.934 (0.023) on the lagged rate, 0.135 (0.056) on inflation and 0.112 (0.030) on slack.
 
-Shortening the sample makes it worse, not better:
+![Signal failure](../figures/production/specification_grid.png)
+
+Shortening the sample makes things worse:
 
 | Sample | Monthly | Quarterly |
-|---|---|---|
-| 1961+ | rho .969, a 0.37 (.61) | rho .910, a 0.38 (.47) |
-| 1983+ | rho .979, a 1.37 (.84) | rho .934, a 1.04 (.78) |
-| 1994+ | rho .987, a **4.01** (3.67) | rho .943, a 1.50 (1.95) |
+| --- | --- | --- |
+| 1961 on | rho .969, a 0.37 (.61) | rho .910, a 0.38 (.47) |
+| 1983 on | rho .979, a 1.37 (.84) | rho .934, a 1.04 (.78) |
+| 1994 on | rho .987, a **4.01** (3.67) | rho .943, a 1.50 (1.95) |
 
-The monthly 1994 cell implies a long-run inflation response of 5.0. That is not
-a finding, it is a divide-by-almost-zero. Monthly data is the aggravating
-factor: the Fed meets eight times a year and holds at most of them, so monthly
-observation forces rho toward one mechanically. We report quarterly for the
-same reason Taylor, Clarida-Galí-Gertler and Rudebusch do.
+The monthly estimate from 1994 implies that the Fed raises rates by four points for every point of excess inflation. That is not a finding; it is division by almost zero. Monthly data make the problem worse. The Fed meets eight times a year and usually holds, so most months show no change and rho is pushed towards one. We report quarterly estimates, as Taylor, Richard Clarida, Jordi Galí, Mark Gertler and Glenn Rudebusch did.
 
-**One genuine regime break.** Rolling 120-month windows put the median
-inflation response at −0.61 before 1983 and +1.05 after, with rho steady at
-0.97 throughout. That is the Clarida-Galí-Gertler result reproduced on our
-data: no inflation response before Volcker, a real one after, and nothing much
-changing since.
+**The model finds one real break.** Across rolling ten-year windows ending before 1983, the median response to inflation is −0.61. For windows ending between 1983 and 1999 it is +0.78, and the estimate holds steady. This reproduces the result of Clarida, Galí and Gertler on our data: the Fed did not respond to inflation before Paul Volcker, and did afterwards.
 
-**Per-chair estimates do not survive.** Every tenure after Greenspan estimates
-rho at or above one, so the division explodes — Powell's inflation response
-comes out at −20.2 with a standard error of 66. Only Greenspan (n = 221) is
-identified, at rho 0.949, a 0.75, b 2.38. The model now refuses to print the
-rest rather than dressing them up as results.
+After 2000 the estimate falls apart. Median rho climbs from 0.93 in the 1983-99 windows to 0.98, and the division by 1 − rho throws 54% of windows ending since 2000 off the chart's scale, some as far as ±560. Since 2000 the rolling windows cannot pin down the Fed's response to inflation at all.
 
-**Against a random walk it ties.** One-step-ahead RMSE 0.548 versus 0.539, a
-ratio of 1.015. It wins only after 2000 (0.982). This is close to a tautology —
-a rate that does not move most months is nearly a random walk at one month —
-and we report it mainly to be clear that the model is not beating a coin flip
-by much.
+![The Volcker break](../figures/production/rolling_inflation_response.png)
+
+**Estimates for individual chairmen fail.** For every chairman since Alan Greenspan, rho comes out at or above one and the division blows up: Jerome Powell's inflation response is −20.2, with a standard error of 66. Only Greenspan's 221 months yield usable figures: rho of 0.949, `a` of 0.75 and `b` of 2.38. The code declines to report the others.
+
+**Against a random walk, the model ties.** Forecasting one month ahead, its root-mean-square error is 0.548 against 0.539 for simply assuming no change, a ratio of 1.015. It wins only after 2000, with a ratio of 0.982. That is almost built in: a rate that does not move in most months is nearly a random walk over a month. We report it to be clear that the model barely beats a naive guess.
 
 ## Model two: the direction of each decision
 
-An ordered logit over the five classes, evaluated strictly walk-forward:
-meeting *i* is predicted from meetings 0 to *i−1* only, refit each time. 171
-evaluation meetings, June 2005 to January 2026. No shuffled cross-validation —
-this is a time series and shuffling leaks the future.
+The second model predicts which of the five kinds of decision the committee will take, using an ordered logit, a regression suited to ranked outcomes. We test it strictly forward in time: we predict each meeting from the meetings before it alone, refitting every time. That gives 171 test meetings, from December 2005 to September 2026. Shuffling the data for cross-validation, a common shortcut, would leak the future into the past.
 
-The baseline is a leak-free expanding prior: at each meeting, the empirical
-class distribution of the meetings *before* it.
+The baseline is the share of each kind of decision among the meetings before each one, which uses no future data either.
 
-| Specification | Features | Kappa | RPS |
-|---|---|---|---|
-| **History only** | **3** | **+0.640** | **0.0523** |
-| History + rule gaps | 8 | +0.611 | 0.0580 |
-| History + macro | 14 | +0.584 | 0.0726 |
-| Everything | 19 | +0.548 | 0.0793 |
-| Rule gaps only | 5 | +0.353 | 0.0823 |
-| Macro only | 11 | +0.320 | 0.1090 |
-| *Expanding prior* | — | *0* | *0.0835* |
-| *Always hold* | — | *0* | *0.0921* |
+| Model | Inputs | Kappa | Probability score | ROC area | PR area | F1 | Accuracy |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| **History only** | **3** | **0.64** | **0.052** | **0.83** | **0.50** | **0.50** | **78%** |
+| History + rule gaps | 8 | 0.61 | 0.058 | 0.86 | 0.52 | 0.50 | 73% |
+| History + economy | 14 | 0.58 | 0.073 | 0.79 | 0.43 | 0.49 | 70% |
+| Everything | 19 | 0.55 | 0.079 | 0.82 | 0.43 | 0.41 | 68% |
+| Rule gaps only | 5 | 0.35 | 0.082 | 0.80 | 0.42 | 0.31 | 68% |
+| Economy only | 11 | 0.32 | 0.109 | 0.60 | 0.31 | 0.31 | 64% |
+| *Past shares* | — | *0.04* | *0.084* | *0.56* | *0.25* | *0.22* | *72%* |
+| *Always hold* | — | *0* | *0.092* | *0.50* | *0.20* | *0.17* | *73%* |
 
-The three history features are the previous decision, the number of meetings
-since the last move, and whether the meeting was unscheduled. They beat the
-nineteen-feature model by 34% and the honest baseline by 37%.
+Rule gaps are the distance between the actual rate and what each of the Fed's published rules prescribes.
 
-**Every macro feature added makes the model worse, monotonically.** Macro
-levels on their own score 0.1090 against the prior's 0.0835 — worse than
-knowing nothing at all. The rule gaps, which encode what the Fed's own
-published rules prescribe, land at 0.0823, indistinguishable from the prior.
+![Past performance](../figures/production/decision_ablation.png)
 
-Note that accuracy runs backwards: the headline model is *less* accurate than
-always saying hold (0.778 against a nuance-free 0.725 for the full spec), while
-being far better by every proper measure. That is the trap this scoring was
-chosen to avoid.
+The three history inputs are the previous decision, the number of meetings since the rate last moved, and whether the meeting was unscheduled. With them alone, the model's probability score is 34% lower than the 19-input model's and 38% lower than the baseline's. It doubles the baseline's precision-recall area and more than doubles its F1.
 
-Timing matters more than features. Refitting only every eighth meeting drops
-RPS to 0.125, behind the prior. The model's edge is that it tracks the current
-stance, and it goes stale within a year.
+**Adding economic data makes the model worse on every score.** Alone, they barely beat the baseline at ranking decisions and score worse than it on probabilities, 0.109 against 0.084. Added to history, they lower every score.
+
+**The Fed's own rules are a closer call.** Alone, the rule gaps rank decisions well, with an ROC area of 0.80, but their probability score is no better than the baseline's. Added to history, they lift the ROC area from 0.83 to 0.86 and the precision-recall area from 0.50 to 0.52, while worsening the probability score from 0.052 to 0.058 and leaving F1 unchanged. The rules help the model order meetings slightly but make its probabilities less reliable. On 171 meetings, differences this small could be noise.
+
+Accuracy would hide all this. Always saying hold is right 73% of the time; the history model manages 78%. The 19-input model, at 68%, is less accurate than always saying hold, yet scores far better on every other measure, because it catches some of the rarer decisions that the hold rule never does.
+
+The model does not need constant refitting. Refit only every eighth meeting, about once a year, it scores 0.0542 against 0.0523, still far ahead of the baseline. Its edge comes from inputs that track the Fed's latest moves, not from re-estimating the model.
 
 ## What we could not predict
 
-**The model never once calls a 25bp cut correctly — nought for eleven.**
+**The model never correctly calls a 25bp cut: it scores nought out of eleven.**
 
-The obvious story is right descriptively. Small cuts are insurance: mid-cycle,
-scheduled, into a strong labour market. Compared with the big cuts, the 25s
-arrive with payrolls rising 86,000 a month rather than falling 81,000, the VIX
-at 21 rather than 28, 5% of them unscheduled rather than 37%, and 19% in
-recession rather than 42%. These are large gaps, up to 0.85 of a standard
-deviation.
+The obvious story fits the facts. Small cuts are insurance, made in the middle of a cycle, at scheduled meetings, with the jobs market still strong. Compared with big cuts, small ones come as payrolls grow by 86,000 a month rather than shrink by 81,000, with the VIX, a gauge of expected stockmarket turbulence, at 21 rather than 28. Just 5% come at unscheduled meetings, against 37% of big cuts, and 19% during recessions, against 42%. Some of these gaps reach 0.85 of a standard deviation.
 
-**They still do not separate.** Leave-one-out nearest-centroid on the pooled
-small-and-large cuts classifies at 0.625 against a 0.475 base rate, and that
-number is flat across every feature subset we tried. Overlap, not separation.
+**Yet the two kinds of cut still overlap.** Assigning each cut to whichever group's average it sits nearer, leaving it out of that average, sorts 62.5% of them correctly, against 47.5% by guessing the more common kind. That figure barely moves whichever inputs we use.
 
-The diagnosis also moves the problem. Of the eleven misses, eight are called
-holds and only three are called big cuts, and the model's confidence in a small
-cut never exceeds 0.286. It can tell a small cut from a large one well enough.
-What it cannot do is see a precautionary cut coming at all, because on the day
-those meetings look like the holds on either side of them. Insurance cuts are
-not identifiable ex ante from observables. Nothing was tuned to the eleven
-cases.
+![Insurance claims](../figures/production/cut25_misses.png)
 
-## What this does and does not say
+The errors point elsewhere. Of the eleven misses, the model calls eight holds and only three big cuts, and it never gives a small cut more than a 29% chance. Its ranking is not hopeless: for small cuts its precision-recall area is 0.24, against 0.07 for the baseline. It puts them above chance, but never on top. It can tell small cuts from big ones well enough. What it cannot do is see a precautionary cut coming, because on the day such meetings look like the holds either side of them. Nothing in the published data flags an insurance cut in advance. We tuned nothing to these eleven cases.
 
-It does not say the Fed ignores the economy. Both models are reduced-form and
-inertia absorbs everything that is persistent, including the slow-moving
-economic conditions that drove the rate to where it already is. A committee
-that responded instantly and fully to conditions would produce a rate series
-that looked much like this one.
+## What this does and does not show
 
-It does say that if you want to know what the Fed will do next, its recent
-behaviour tells you nearly everything the published data can, and that the
-policy rules the Fed tabulates for its own meetings carry no out-of-sample
-information beyond it.
+It does not show that the Fed ignores the economy. Both models are simple statistical fits, and inertia absorbs everything persistent, including the slow-moving economic conditions that took the rate to where it already is. A committee that responded quickly and fully to the economy could produce a rate series much like this one.
 
----
+It does show that, to predict the Fed's next move, its recent behaviour tells you nearly everything the published data can. Economic data add nothing beyond it, and the policy rules the Fed calculates for its own meetings add little.
 
-## Notes for whoever picks this up
+## Caveats
 
-**Status.** Draft by the main agent, written fast and not yet through the
-`economist-writing` skill. It has not had a house-style pass: check headline
-and subhead conventions, the serial comma rule, spelled-out numbers, and the
-prohibition on the passive. Numbers are all verified against the code and can
-be trusted; the prose cannot.
-
-**Figures needed.** Only one existing chart is attached, and it is really the
-explainer's. Four modelling charts do not exist yet. Send these to
-`plot-agent`, one message per chart, and note it has a low image budget before
-the API rejects the call:
-
-1. *The ablation.* RPS by specification with the expanding prior as a reference
-   line. The single most important chart — it carries the whole argument, and
-   the descending staircase from three features to nineteen is the story. Data:
-   `decision.ablation(X, y)`.
-2. *Rolling inflation response.* `level.rolling(frame)` output, the `a` series
-   with its 1983 break marked. Needs care: pre-1983 windows where rho exceeds
-   one produce values from −561 to +487, so clip the axis and say in the
-   footnote that you have.
-3. *The specification grid.* `level.specification_grid(frame_m, frame_q)` as a
-   coefficient plot with error bars, showing `a` straddling zero in all six
-   cells while `b` does not. Six rows, two panels.
-4. *The cut25 confusion.* Where the eleven small cuts actually go. A 5x5 matrix
-   is the honest form but reads poorly at slide size; consider a slope or
-   flow chart instead, and let the plot agent choose.
-
-**Loose ends.**
-- Dissent counts start March 2002; earlier votes are in the minutes only. If
-  dissents should be a model feature across the full sample, that is a
-  minutes-parsing job nobody has done.
-- Column-contract tests assert that columns exist and are documented, not that
-  they contain anything. `target_mid` was silently all-NaN for a while and the
-  suite stayed green. The IOER splice tests check values — copy that pattern to
-  the other spliced columns.
-- `r_star` is a constant 2.0 in the shipped frame, so the decision model drops
-  it automatically. The Holston-Laubach-Williams series is wired up and
-  available via `build_frame(r_star="hlw")` but nothing has been re-run on it.
-- The two slow tests (~3 minutes) are marked and deselected by default. Run
-  `uv run pytest -m slow` before trusting any change to the models.
+- The neutral interest rate, r\*, is fixed at 2%. A time-varying estimate from Thomas Laubach and John Williams, later with Kathryn Holston, is available in the code but untested in these models.
+- Records of dissenting votes start in March 2002. Earlier dissents sit only in the minutes, so dissent is not an input.

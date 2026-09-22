@@ -28,7 +28,13 @@ from dataclasses import dataclass
 import numpy as np
 import pandas as pd
 from scipy.optimize import OptimizeWarning
-from sklearn.metrics import cohen_kappa_score
+from sklearn.metrics import (
+    average_precision_score,
+    balanced_accuracy_score,
+    cohen_kappa_score,
+    f1_score,
+    roc_auc_score,
+)
 from sklearn.neighbors import NearestCentroid
 from sklearn.preprocessing import StandardScaler
 from statsmodels.miscmodels.ordinal_model import OrderedModel
@@ -352,11 +358,12 @@ def evaluate(y_true: pd.Series | np.ndarray,
 
     Returns:
         Dict mapping ``model`` / ``expanding_prior`` / ``prior_full_sample`` /
-        ``constant_hold``, each to ``kappa``, ``rps``, ``log_loss`` and
-        ``accuracy``. ``expanding_prior`` is the leak-free headline
-        comparison: the empirical class distribution of ``y_true`` up to each
-        meeting, uniform before any history. ``prior_full_sample`` peeks at
-        the realised class frequencies of the whole window and is a secondary
+        ``constant_hold``, each to ``kappa``, ``rps``, ``log_loss``,
+        ``accuracy`` and the class-balanced metrics of :func:`_balanced`.
+        ``expanding_prior`` is the leak-free headline comparison: the
+        empirical class distribution of ``y_true`` up to each meeting,
+        uniform before any history. ``prior_full_sample`` peeks at the
+        realised class frequencies of the whole window and is a secondary
         reference only; ``constant_hold`` is the degenerate all-hold
         distribution and scores infinite log loss wherever a non-hold label
         occurs.
@@ -378,8 +385,49 @@ def evaluate(y_true: pd.Series | np.ndarray,
             "rps": rps(codes, p),
             "log_loss": _log_loss(codes, p),
             "accuracy": float((pred == codes).mean()),
+            **_balanced(codes, p, pred),
         }
     return out
+
+
+def _balanced(codes: np.ndarray, p: np.ndarray, pred: np.ndarray) -> dict[str, float]:
+    """Class-balanced scores that do not reward always saying hold.
+
+    Classes absent from ``codes`` are skipped when averaging and score NaN
+    in the per-class entries.
+
+    Args:
+        codes: Integer label codes.
+        p: n x 5 predicted probabilities.
+        pred: Argmax predicted codes.
+
+    Returns:
+        ``auroc_macro`` and ``auprc_macro`` (one-vs-rest ROC AUC and average
+        precision, macro-averaged), ``f1_macro``, ``balanced_accuracy``, and
+        ``auroc_<class>`` / ``auprc_<class>`` for each class.
+    """
+    present = np.unique(codes)
+    out: dict[str, float] = {}
+    auroc, auprc = [], []
+    for c, name in enumerate(CLASSES):
+        hit = codes == c
+        if c not in present or hit.all():
+            out[f"auroc_{name}"] = out[f"auprc_{name}"] = float("nan")
+            continue
+        out[f"auroc_{name}"] = float(roc_auc_score(hit, p[:, c]))
+        out[f"auprc_{name}"] = float(average_precision_score(hit, p[:, c]))
+        auroc.append(out[f"auroc_{name}"])
+        auprc.append(out[f"auprc_{name}"])
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        out["balanced_accuracy"] = float(balanced_accuracy_score(codes, pred))
+    return {
+        "auroc_macro": float(np.mean(auroc)) if auroc else float("nan"),
+        "auprc_macro": float(np.mean(auprc)) if auprc else float("nan"),
+        "f1_macro": float(f1_score(codes, pred, labels=present, average="macro",
+                                   zero_division=0)),
+        **out,
+    }
 
 
 def _expanding_prior(codes: np.ndarray) -> np.ndarray:
@@ -572,7 +620,7 @@ def ablation(X: pd.DataFrame, y: pd.Series, *, min_train: int = 100, refit_every
         specs: Names from :data:`SPECS` to run; all of them when None.
 
     Returns:
-        Frame with columns ``spec, kind, k, kappa, rps, log_loss, accuracy``:
+        Frame with columns ``spec, kind, k``, then every :func:`evaluate` metric:
         one row per specification (kind ``model``) then one per baseline
         (kind ``reference``), the expanding prior first.
 
@@ -589,7 +637,7 @@ def ablation(X: pd.DataFrame, y: pd.Series, *, min_train: int = 100, refit_every
     res = evaluate(wf["label"], wf[list(CLASSES)])
     for base in ("expanding_prior", "prior_full_sample", "constant_hold"):
         rows.append({"spec": base, "kind": "reference", "k": 0, **res[base]})
-    return pd.DataFrame(rows)[["spec", "kind", "k", "kappa", "rps", "log_loss", "accuracy"]]
+    return pd.DataFrame(rows)
 
 
 def cut25_diagnosis(X: pd.DataFrame | None = None, y: pd.Series | None = None,
