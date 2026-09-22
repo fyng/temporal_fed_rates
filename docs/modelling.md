@@ -1,8 +1,8 @@
 # What moves the Fed
 
-The best guide to what the Federal Reserve will do next is what it has just done. Once you know the recent path of interest rates, inflation, unemployment and financial stress add nothing to a forecast, and the policy rules the Fed calculates for its own meetings add little.
+The best guide to what the Federal Reserve will do next is what traders expect it to do. The next best is what it has just done. Once you know the recent path of interest rates, monthly figures on inflation, unemployment and financial stress add nothing to a forecast, and the policy rules the Fed calculates for its own meetings add little.
 
-We did not set out to show this. We built two unrelated models, one of the level of the Fed's target rate and one of the direction of each decision. They disagree about nearly everything except that conclusion.
+We did not set out to show this. We built two unrelated models, one of the level of the Fed's target rate and one of the direction of each decision. They disagree about nearly everything except the weakness of the economic data.
 
 ## The record
 
@@ -92,34 +92,70 @@ The second model predicts which of the five kinds of decision the committee will
 
 The baseline is the share of each kind of decision among the meetings before each one, which uses no future data either.
 
+We feed the model four kinds of input, each with its own literature.
+
+### Inertia
+
+The Fed moves in small steps and seldom reverses soon after a move. Michael Dueker (1999) and Liang Hu and Peter Phillips (2004) modelled changes in the target as ordered choices that depend on the previous change. James Hamilton and Òscar Jordà (2002) added the time since the rate last moved. Our history inputs follow them: the previous decision, the number of meetings since the rate last moved, and whether the meeting was unscheduled.
+
+### Rules and the economy
+
+John Taylor (1993) showed that a simple rule, setting the rate from inflation and the gap between output and its potential, tracked the Fed's decisions from 1987 to 1992. Athanasios Orphanides (2001) showed that such rules fit much worse on the data the committee actually had at the time, which is why we lag every input. Since 2017 the Fed has published the prescriptions of several rules in its twice-yearly Monetary Policy Report. Our rule gaps are the distance between the actual rate and five of them. Our economic inputs are 11 monthly series on inflation, jobs, output and financial stress.
+
+### Market rates
+
+Traders bet on the Fed's next move, and short-term Treasury yields carry those bets. Hamilton and Jordà found that the spread of the six-month Treasury-bill rate over the target helped predict changes. Joachim Grammig and Kerstin Kehrle (2008) built on their model. Our market inputs are the three- and six-month bill rates on the last trading day before each meeting, less the previous target.
+
+### Futures
+
+Fed-funds futures pay out on the average overnight rate in a given month, so their prices give the rate traders expect almost directly. Kenneth Kuttner (2001) showed how to read the expected change at a single meeting from them. Refet Gürkaynak, Brian Sack and Eric Swanson (2007) found that futures beat other market measures at forecasting the rate over the next few months. CME Group's FedWatch tool turns futures prices into a probability for each outcome by splitting the expected change between the two nearest quarter-point steps; we do the same. Our prices come from Michael Bauer and Eric Swanson (2023), via the San Francisco Fed, and are taken minutes before each announcement. They run from January 2010 to December 2023.
+
+### Results
+
 | Model | Inputs | Kappa | Probability score | ROC area | PR area | F1 | Accuracy |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| **History only** | **3** | **0.64** | **0.052** | **0.83** | **0.50** | **0.50** | **78%** |
+| History only | 3 | 0.64 | 0.052 | 0.83 | 0.50 | 0.50 | 78% |
 | History + rule gaps | 8 | 0.61 | 0.058 | 0.86 | 0.52 | 0.50 | 73% |
 | History + economy | 14 | 0.58 | 0.073 | 0.79 | 0.43 | 0.49 | 70% |
 | Everything | 19 | 0.55 | 0.079 | 0.82 | 0.43 | 0.41 | 68% |
 | Rule gaps only | 5 | 0.35 | 0.082 | 0.80 | 0.42 | 0.31 | 68% |
 | Economy only | 11 | 0.32 | 0.109 | 0.60 | 0.31 | 0.31 | 64% |
+| Market rates only | 2 | 0.74 | 0.037 | 0.93 | 0.72 | 0.62 | 81% |
+| **History + market rates** | **5** | **0.77** | **0.034** | **0.96** | **0.75** | **0.64** | **81%** |
 | *Past shares* | — | *0.04* | *0.084* | *0.56* | *0.25* | *0.22* | *72%* |
 | *Always hold* | — | *0* | *0.092* | *0.50* | *0.20* | *0.17* | *73%* |
 
-Rule gaps are the distance between the actual rate and what each of the Fed's published rules prescribes.
-
 ![Past performance](../figures/production/decision_ablation.png)
 
-The three history inputs are the previous decision, the number of meetings since the rate last moved, and whether the meeting was unscheduled. With them alone, the model's probability score is 34% lower than the 19-input model's and 38% lower than the baseline's. It doubles the baseline's precision-recall area and more than doubles its F1.
+**Market rates beat everything else.** Two bill rates, with nothing else, give a probability score of 0.037, against 0.052 for history. Adding history lowers it to 0.034, 35% below history alone, and lifts the precision-recall area from 0.50 to 0.75.
+
+**History comes next.** With its three inputs alone, the model's probability score is 34% lower than the 19-input model's and 38% lower than the baseline's. It doubles the baseline's precision-recall area and more than doubles its F1.
 
 **Adding economic data makes the model worse on every score.** Alone, they barely beat the baseline at ranking decisions and score worse than it on probabilities, 0.109 against 0.084. Added to history, they lower every score.
 
 **The Fed's own rules are a closer call.** Alone, the rule gaps rank decisions well, with an ROC area of 0.80, but their probability score is no better than the baseline's. Added to history, they lift the ROC area from 0.83 to 0.86 and the precision-recall area from 0.50 to 0.52, while worsening the probability score from 0.052 to 0.058 and leaving F1 unchanged. The rules help the model order meetings slightly but make its probabilities less reliable. On 171 meetings, differences this small could be noise.
 
-Accuracy would hide all this. Always saying hold is right 73% of the time; the history model manages 78%. The 19-input model, at 68%, is less accurate than always saying hold, yet scores far better on every other measure, because it catches some of the rarer decisions that the hold rule never does.
+Accuracy would hide much of this. Always saying hold is right 73% of the time; the history model manages 78%. The 19-input model, at 68%, is less accurate than always saying hold, yet scores far better on every other measure, because it catches some of the rarer decisions that the hold rule never does.
 
-The model does not need constant refitting. Refit only every eighth meeting, about once a year, it scores 0.0542 against 0.0523, still far ahead of the baseline. Its edge comes from inputs that track the Fed's latest moves, not from re-estimating the model.
+The model does not need constant refitting. Refit only every eighth meeting, about once a year, the history model scores 0.0542 against 0.0523, still far ahead of the baseline. Its edge comes from inputs that track the Fed's latest moves, not from re-estimating the model.
+
+**Futures are almost never wrong, but they are not a fair rival.** Because their data cover only 2010-23, we compare them on the 113 meetings in that window.
+
+| Model | Kappa | Probability score | ROC area | PR area | F1 | Accuracy |
+| --- | --- | --- | --- | --- | --- | --- |
+| History only | 0.58 | 0.047 | 0.80 | 0.53 | 0.42 | 80% |
+| History + rule gaps | 0.59 | 0.053 | 0.84 | 0.50 | 0.47 | 74% |
+| Market rates only | 0.80 | 0.025 | 0.95 | 0.80 | 0.49 | 87% |
+| History + market rates | 0.79 | 0.026 | 0.96 | 0.80 | 0.60 | 85% |
+| **Futures** | **0.99** | **0.003** | **0.95** | **0.89** | **0.91** | **99%** |
+| *Past shares* | *0.01* | *0.066* | *0.67* | *0.27* | *0.17* | *77%* |
+| *Always hold* | *0* | *0.073* | *0.50* | *0.20* | *0.18* | *78%* |
+
+Futures miss one decision in 113: on March 3rd 2020, at an unscheduled meeting, they priced a quarter-point cut and the Fed cut by half a point. Their probability score is a tenth of any model's. That says more about the Fed than about futures. The committee now signals its intentions in speeches, minutes and statements, and by the minutes before an announcement traders have priced it in. Bill rates on the eve of a meeting carry the same signal but less cleanly, since they also move with the supply of bills and the demand for safe assets. Both measure how well the Fed communicates, not how well an outsider can forecast it weeks ahead.
 
 ## What we could not predict
 
-**The model never correctly calls a 25bp cut: it scores nought out of eleven.**
+**The history model never correctly calls a 25bp cut: it scores nought out of eleven.**
 
 The obvious story fits the facts. Small cuts are insurance, made in the middle of a cycle, at scheduled meetings, with the jobs market still strong. Compared with big cuts, small ones come as payrolls grow by 86,000 a month rather than shrink by 81,000, with the VIX, a gauge of expected stockmarket turbulence, at 21 rather than 28. Just 5% come at unscheduled meetings, against 37% of big cuts, and 19% during recessions, against 42%. Some of these gaps reach 0.85 of a standard deviation.
 
@@ -127,15 +163,30 @@ The obvious story fits the facts. Small cuts are insurance, made in the middle o
 
 ![Insurance claims](../figures/production/cut25_misses.png)
 
-The errors point elsewhere. Of the eleven misses, the model calls eight holds and only three big cuts, and it never gives a small cut more than a 29% chance. Its ranking is not hopeless: for small cuts its precision-recall area is 0.24, against 0.07 for the baseline. It puts them above chance, but never on top. It can tell small cuts from big ones well enough. What it cannot do is see a precautionary cut coming, because on the day such meetings look like the holds either side of them. Nothing in the published data flags an insurance cut in advance. We tuned nothing to these eleven cases.
+The errors point elsewhere. Of the eleven misses, the model calls eight holds and only three big cuts, and it never gives a small cut more than a 29% chance. Its ranking is not hopeless: for small cuts its precision-recall area is 0.24, against 0.07 for the baseline. It puts them above chance, but never on top. It can tell small cuts from big ones well enough. What it cannot do is see a precautionary cut coming, because on the day such meetings look like the holds either side of them. We tuned nothing to these eleven cases.
+
+Markets see a little more. The bill-rate models each call two of the eleven, and never give a small cut more than a 46% chance. Both call the three insurance cuts of 2019 holds, with 81-91% confidence. Futures, whose data cover only those three of the eleven, call all three correctly. Nothing in the published economic data flags an insurance cut in advance; the Fed's own signals in the weeks before do.
 
 ## What this does and does not show
 
-It does not show that the Fed ignores the economy. Both models are simple statistical fits, and inertia absorbs everything persistent, including the slow-moving economic conditions that took the rate to where it already is. A committee that responded quickly and fully to the economy could produce a rate series much like this one.
+It does not show that the Fed ignores the economy. Both models are simple statistical fits, and inertia absorbs everything persistent, including the slow-moving economic conditions that took the rate to where it already is. A committee that responded quickly and fully to the economy could produce a rate series much like this one. Nor does it show that monthly data are useless to traders: market prices already reflect them, along with everything else traders know.
 
-It does show that, to predict the Fed's next move, its recent behaviour tells you nearly everything the published data can. Economic data add nothing beyond it, and the policy rules the Fed calculates for its own meetings add little.
+It does show that, to predict the Fed's next move, market prices beat the Fed's recent behaviour, and that recent behaviour tells you nearly everything monthly economic data can. Economic data add nothing beyond it, and the policy rules the Fed calculates for its own meetings add little.
 
 ## Caveats
 
 - The neutral real rate, $r^*$, is fixed at 2%. A time-varying estimate from Thomas Laubach and John Williams, later with Kathryn Holston, is available in the code but untested in these models.
 - Records of dissenting votes start in March 2002. Earlier dissents sit only in the minutes, so dissent is not an input.
+- The market and futures benchmarks use prices from after the Fed's pre-meeting signals: the last trading day before each meeting for bills, minutes before the announcement for futures.
+
+## Further reading
+
+- Bauer, M. and Swanson, E. (2023), "A reassessment of monetary policy surprises and high-frequency identification", *NBER Macroeconomics Annual*. [Data](https://www.frbsf.org/wp-content/uploads/monetary-policy-surprises-data.xlsx)
+- Dueker, M. (1999), "Measuring monetary policy inertia in target fed funds rate changes", *Federal Reserve Bank of St Louis Review*.
+- Grammig, J. and Kehrle, K. (2008), "A new marked point process model for the federal funds rate target", *Journal of Economic Dynamics and Control*.
+- Gürkaynak, R., Sack, B. and Swanson, E. (2007), "Market-based measures of monetary policy expectations", *Journal of Business & Economic Statistics*.
+- Hamilton, J. and Jordà, Ò. (2002), "A model of the federal funds rate target", *Journal of Political Economy*.
+- Hu, L. and Phillips, P. (2004), "Dynamics of the federal funds target rate: a nonstationary discrete choice approach", *Journal of Applied Econometrics*.
+- Kuttner, K. (2001), "Monetary policy surprises and interest rates: evidence from the Fed funds futures market", *Journal of Monetary Economics*.
+- Orphanides, A. (2001), "Monetary policy rules based on real-time data", *American Economic Review*.
+- Taylor, J. (1993), "Discretion versus policy rules in practice", *Carnegie-Rochester Conference Series on Public Policy*.

@@ -76,6 +76,10 @@ def _synthetic_series(sid: str) -> pd.Series:
         values = np.full(n, 3.0)
     elif sid == "DGS2":
         values = np.full(n, 2.5)
+    elif sid == "DTB3":
+        values = np.full(n, 3.0)
+    elif sid == "DTB6":
+        values = np.full(n, 3.25)
     elif sid == "VIXCLS":
         values = np.full(n, 20.0)
     elif sid == "NROU":
@@ -141,7 +145,7 @@ def test_columns_documentation_agrees_both_ways(synthetic_frame: pd.DataFrame) -
 
 
 def test_column_count() -> None:
-    assert len(COLUMNS) == 52
+    assert len(COLUMNS) == 54
 
 
 def test_quarterly_build(synthetic_raw) -> None:

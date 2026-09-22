@@ -15,6 +15,7 @@ from fedrates.models.decision import (
     FEATURES,
     HISTORY,
     MACRO,
+    MARKET,
     RULE_GAPS,
     SPECS,
     ablation,
@@ -95,12 +96,12 @@ def _cyclic_xy(n: int) -> tuple[pd.DataFrame, pd.Series]:
 
 
 def test_features_one_row_per_meeting_aligned() -> None:
-    """The design matrix is indexed by meeting date with the FEATURES columns."""
+    """The design matrix is indexed by meeting date with FEATURES plus MARKET."""
     dates = _meeting_dates(4)
     X = features(_monthly_frame(_month_starts(dates)), _meeting_frame(dates, (-25, 0, 25, 50)))
     assert list(X.index) == list(dates)
     assert X.index.name == "date"
-    assert list(X.columns) == list(FEATURES)
+    assert list(X.columns) == [*FEATURES, *MARKET]
 
 
 def test_features_read_exactly_the_lagged_months() -> None:
@@ -170,6 +171,30 @@ def test_features_never_use_meeting_month_or_later() -> None:
     # and the values pin the lag exactly: meeting 1 reads December, meeting 2 April
     assert X["pi_gap"].iloc[0] == pytest.approx(300.0)  # frame row 2021-12
     assert X["pi_gap"].iloc[1] == pytest.approx(700.0)  # frame row 2022-04
+
+
+def test_features_tbill_spread_never_uses_meeting_day_or_later() -> None:
+    """The market block reads the last bill print strictly before each meeting.
+
+    Every daily row dated on or after the first meeting date is poisoned with
+    9999.0 except the single prior-business-day row each meeting may read, so
+    a join on the meeting day, a later day or any monthly aggregation pulls
+    poison into the spreads and fails the exact-value assertions.
+    """
+    dates = _meeting_dates(3)
+    idx = pd.date_range("2021-11-01", "2022-04-30", freq="B", name="date")
+    tbill = pd.DataFrame({"tbill3": 5.0, "tbill6": 5.5}, index=idx)
+    allowed = pd.DatetimeIndex([idx[idx < d][-1] for d in dates])
+    tbill.loc[idx >= dates[0]] = 9999.0
+    tbill.loc[allowed, "tbill3"] = [5.1, 5.2, 5.3]
+    tbill.loc[allowed, "tbill6"] = [5.4, 5.5, 5.6]
+    X = features(
+        _monthly_frame(_month_starts(dates)), _meeting_frame(dates, (-25, 0, 25)), tbill=tbill
+    )
+    # previous midpoints: frame target_old (216.0) for the first meeting, then
+    # the synthetic single-point targets 3.0 and 3.25
+    assert X["tbill3_spread"].to_numpy() == pytest.approx([5.1 - 216.0, 5.2 - 3.0, 5.3 - 3.25])
+    assert X["tbill6_spread"].to_numpy() == pytest.approx([5.4 - 216.0, 5.5 - 3.0, 5.6 - 3.25])
 
 
 def test_features_real_record() -> None:
@@ -420,6 +445,14 @@ def test_feature_blocks_partition_features() -> None:
     assert not (set(HISTORY) & set(RULE_GAPS)) and not (set(HISTORY) & set(MACRO))
     assert set(SPECS["full"]) == set(FEATURES)
     assert SPECS["history"] == HISTORY
+
+
+def test_market_block_outside_features_and_macro() -> None:
+    """MARKET holds the two bill spreads and leaves MACRO and "full" alone."""
+    assert MARKET == ("tbill3_spread", "tbill6_spread")
+    assert not set(MARKET) & set(FEATURES)
+    assert SPECS["market"] == MARKET
+    assert SPECS["history+market"] == (*HISTORY, *MARKET)
 
 
 def test_headline_structure_synthetic() -> None:

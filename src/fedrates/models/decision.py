@@ -13,7 +13,8 @@ committee's own recent behaviour, per :func:`ablation`: macro levels alone
 score worse than the class prior out-of-sample and the rule gaps alone are
 indistinguishable from it, so the predictive content is what the committee
 last did, not measured conditions. :func:`headline` runs it;
-:data:`FEATURES` is the full design matrix retained for the ablation.
+:data:`FEATURES` plus the :data:`MARKET` bill spreads is the full design
+matrix retained for the ablation.
 
 Every macro feature is joined through :func:`fomc.state_at_meetings`, the
 leakage boundary: a meeting on date d sees only frame months before d.
@@ -47,6 +48,7 @@ __all__ = [
     "FEATURES",
     "HISTORY",
     "MACRO",
+    "MARKET",
     "RULE_GAPS",
     "SPECS",
     "Headline",
@@ -102,6 +104,7 @@ _LEVEL_COLS: tuple[str, ...] = (
 )
 
 # Feature blocks: the headline model uses HISTORY alone; see ablation().
+# MARKET sits outside FEATURES, so MACRO and "full" are unchanged by it.
 HISTORY: tuple[str, ...] = ("decision_lag1", "mtgs_since_move", "intermeeting")
 RULE_GAPS: tuple[str, ...] = (
     "rule_gap_taylor93", "rule_gap_balanced", "rule_gap_shortfalls",
@@ -110,6 +113,7 @@ RULE_GAPS: tuple[str, ...] = (
 MACRO: tuple[str, ...] = tuple(
     c for c in FEATURES if c not in HISTORY and c not in RULE_GAPS
 )
+MARKET: tuple[str, ...] = ("tbill3_spread", "tbill6_spread")
 SPECS: dict[str, tuple[str, ...]] = {
     "history": HISTORY,
     "history+rule": (*HISTORY, *RULE_GAPS),
@@ -117,6 +121,8 @@ SPECS: dict[str, tuple[str, ...]] = {
     "full": tuple(FEATURES),
     "rule": RULE_GAPS,
     "macro": MACRO,
+    "history+market": (*HISTORY, *MARKET),
+    "market": MARKET,
 }
 
 
@@ -124,13 +130,15 @@ SPECS: dict[str, tuple[str, ...]] = {
 
 
 def features(frame: pd.DataFrame | None = None, meetings: pd.DataFrame | None = None,
-             *, lag_months: int = 1) -> pd.DataFrame:
+             *, lag_months: int = 1, tbill: pd.DataFrame | None = None) -> pd.DataFrame:
     """Design matrix for the decision model, one row per meeting.
 
     All macro columns are joined through :func:`fomc.state_at_meetings` at
     ``lag_months`` (payroll change needs one further month back), so no
     feature for meeting date d uses frame data from month d or later; see
-    :data:`FEATURES` for column definitions. Rows come back in date order and
+    :data:`FEATURES` for column definitions. The :data:`MARKET` bill spreads
+    read the last daily print strictly before the meeting date, minus the
+    same previous midpoint the rule gaps use. Rows come back in date order and
     carry NaN where the frame has no data yet; :func:`fit_ordered_logit`
     imputes them.
 
@@ -138,9 +146,12 @@ def features(frame: pd.DataFrame | None = None, meetings: pd.DataFrame | None = 
         frame: Monthly analysis frame; ``dataset.load_frame()`` when None.
         meetings: Meetings frame; ``fomc.load_meetings()`` when None.
         lag_months: Publication lag enforced by the leakage boundary.
+        tbill: Daily bill rates as from ``dataset.load_tbill()``; loaded when
+            None.
 
     Returns:
-        Frame indexed by meeting date with the :data:`FEATURES` columns.
+        Frame indexed by meeting date with the :data:`FEATURES` columns plus
+        the :data:`MARKET` columns.
     """
     frame = dataset.load_frame() if frame is None else frame
     meetings = fomc.load_meetings() if meetings is None else meetings
@@ -156,6 +167,12 @@ def features(frame: pd.DataFrame | None = None, meetings: pd.DataFrame | None = 
     mid_prev = _prev_target_midpoint(m, state)
     for key in ("taylor93", "balanced", "shortfalls", "inertial", "first_diff"):
         out[f"rule_gap_{key}"] = state[f"rule_{key}"].to_numpy() - mid_prev
+    bills = dataset.load_tbill() if tbill is None else tbill
+    for col in ("tbill3", "tbill6"):
+        s = bills[col].dropna()
+        pos = s.index.searchsorted(dates, side="left") - 1  # last print strictly before d
+        rate = np.where(pos >= 0, s.to_numpy()[np.clip(pos, 0, None)], np.nan)
+        out[f"{col}_spread"] = rate - mid_prev
     codes = fomc.label_actions(m).cat.codes.to_numpy()
     pos = np.arange(codes.size)
     last_move = np.maximum.accumulate(np.where(codes != _HOLD, pos, -1))
@@ -163,7 +180,7 @@ def features(frame: pd.DataFrame | None = None, meetings: pd.DataFrame | None = 
     out["decision_lag1"] = pd.Series(codes.astype(float), index=dates).shift(1)
     out["mtgs_since_move"] = np.where(prior_move >= 0, pos - prior_move, pos).astype(float)
     out["intermeeting"] = m["intermeeting"].to_numpy(dtype=float)
-    return out[list(FEATURES)]
+    return out[list(FEATURES) + list(MARKET)]
 
 
 def _prev_target_midpoint(m: pd.DataFrame, state: pd.DataFrame) -> np.ndarray:

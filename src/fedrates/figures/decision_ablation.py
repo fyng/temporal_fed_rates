@@ -17,6 +17,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
 from fedrates import register, save
+from fedrates.futures import benchmark
 from fedrates.models.decision import CLASSES, SPECS, evaluate, features, labels, walk_forward
 from fedrates.theme import (
     ECON_RED,
@@ -40,11 +41,12 @@ SUBTITLE = "Scores of Fed decision models, by inputs used, Dec 2005-Sep 2026"
 SUBTITLE_2 = "Dashed line = baseline of past shares of each decision"
 SOURCE = "Sources: Federal Reserve; FRED; our analysis"
 FOOTNOTE = (
-    "*Ranked probability score. Areas and F1 are one class against the rest, "
-    "averaged over five decisions; models refit before each meeting"
+    "*Ranked probability score. Areas and F1: one class vs the rest, averaged "
+    "over five decisions; †Jan 2010-Dec 2023 only, prices just before each announcement"
 )
 
-# (spec, label) top to bottom: feature counts climb 3 -> 19, baselines last.
+# (spec, label) top to bottom: fitted models first, feature counts climbing
+# 3 -> 19, then the market-input models, the futures benchmark and baselines.
 _ROWS: tuple[tuple[str, str], ...] = (
     ("history", "History only"),
     ("rule", "Rule gaps only"),
@@ -52,6 +54,9 @@ _ROWS: tuple[tuple[str, str], ...] = (
     ("macro", "Economy only"),
     ("history+macro", "History + economy"),
     ("full", "Everything"),
+    ("market", "Market rates only"),
+    ("history+market", "History + market rates"),
+    ("futures", "Fed-funds futures†"),
     ("constant_hold", "Always hold"),
 )
 _FOCUS = "history"
@@ -78,6 +83,9 @@ _EXPECTED: dict[str, tuple[int, float]] = {
     "macro": (11, 0.1090),
     "history+macro": (14, 0.0726),
     "full": (19, 0.0793),
+    "market": (2, 0.0370),
+    "history+market": (5, 0.0338),
+    "futures": (0, 0.0029),
     "expanding_prior": (0, 0.0845),
     "constant_hold": (0, 0.0921),
 }
@@ -111,7 +119,8 @@ def _ablation() -> pd.DataFrame:
 
     Returns:
         Frame with spec, kind, k and every :func:`evaluate` metric per row:
-        one per specification, then the three baselines.
+        one per specification, then the three baselines and the futures
+        benchmark.
     """
     X = y = None
     if not all(Path(str(_WF).format(spec=s.replace("+", "_"))).exists() for s in SPECS):
@@ -123,6 +132,11 @@ def _ablation() -> pd.DataFrame:
         rows.append({"spec": spec, "kind": "model", "k": len(SPECS[spec]), **res["model"]})
     for base in ("expanding_prior", "prior_full_sample", "constant_hold"):
         rows.append({"spec": base, "kind": "reference", "k": 0, **res[base]})
+    fb = benchmark()
+    rows.append({
+        "spec": "futures", "kind": "benchmark", "k": 0,
+        **evaluate(fb["label"], fb[list(CLASSES)])["model"],
+    })
     table = pd.DataFrame(rows)
     table.to_csv(CACHE, index=False)
     return table
@@ -218,15 +232,22 @@ def build_fig() -> go.Figure:
     ]
     colours = [MAIN["BLUE"] if spec == _FOCUS else GREY_LABEL for spec in specs]
     n = len(specs)
+    # Bar centres on their row slots, with a thin extra gap isolating the
+    # futures benchmark row from the fitted models above and baselines below.
+    _gap = 0.22
+    fut_y = n - 1 - specs.index("futures")
+    ys = [float(n - 1 - i) for i in range(n)]
+    ys = [y + (_gap if y > fut_y else -_gap if y < fut_y else 0.0) for y in ys]
+    y_range = [min(ys) - 0.5, max(ys) + 0.5]
     fig = make_subplots(rows=1, cols=len(_PANELS), shared_yaxes=True, horizontal_spacing=0.035)
     for col, (metric, _, _, _) in enumerate(_PANELS, start=1):
         vals = [float(row.loc[spec, metric]) for spec in specs]
-        # Plotly draws the first category at the bottom: reverse only the y
-        # positions, so every value lands on its own label, top-down.
+        # Plotly draws the first category at the bottom: the y positions run
+        # top-down, so every value lands on its own label.
         fig.add_trace(
             go.Bar(
                 x=vals,
-                y=list(range(n))[::-1],
+                y=ys,
                 orientation="h",
                 marker=dict(color=colours),
                 showlegend=False,
@@ -325,15 +346,15 @@ def build_fig() -> go.Figure:
             col=col,
         )
     fig.update_yaxes(
-        range=[-0.5, n - 0.5],
-        tickvals=list(range(n)),
-        ticktext=list(reversed(ticktext)),
+        range=y_range,
+        tickvals=ys,
+        ticktext=ticktext,
         ticklabelstandoff=6,
         showgrid=False,
         row=1,
         col=1,
     )
-    fig.update_yaxes(showgrid=False, showticklabels=False, range=[-0.5, n - 0.5])
+    fig.update_yaxes(showgrid=False, showticklabels=False, range=y_range)
     fig.update_yaxes(showticklabels=True, row=1, col=1)
     return fig
 

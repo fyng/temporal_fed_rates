@@ -39,6 +39,8 @@ REQUIRED_IDS = frozenset(
         "T10Y2Y",
         "DGS10",
         "DGS2",
+        "DTB3",
+        "DTB6",
         "NFCI",
         "ANFCI",
         "VIXCLS",

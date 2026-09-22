@@ -15,10 +15,13 @@ __all__ = [
     "build_frame",
     "frame_path",
     "load_frame",
+    "load_tbill",
     "recession_spans",
     "save_frame",
     "tidy",
 ]
+
+TBILL_IDS: tuple[str, ...] = ("DTB3", "DTB6")
 
 Vintage = fred.Vintage
 
@@ -65,6 +68,8 @@ COLUMNS: dict[str, str] = {
     "spread_10y2y": "10y-2y Treasury spread (FRED), monthly mean",
     "dgs10": "10-year Treasury yield, monthly mean",
     "dgs2": "2-year Treasury yield, monthly mean",
+    "tbill3": "3-month Treasury bill rate, monthly mean",
+    "tbill6": "6-month Treasury bill rate, monthly mean",
     "nfci": "Chicago Fed financial conditions, end of month",
     "anfci": "Chicago Fed adjusted financial conditions, end of month",
     "vix": "VIX, monthly mean",
@@ -299,6 +304,30 @@ def load_frame(name: str = "analysis_monthly", *, rebuild: bool = False, **kw) -
     path = frame_path(name)
     if rebuild or not path.exists():
         save_frame(build_frame(**kw), name)
+    frame = pd.read_csv(path, parse_dates=["date"], index_col="date")
+    frame.index = pd.DatetimeIndex(frame.index, name="date")
+    return frame.astype("float64")
+
+
+def load_tbill(*, rebuild: bool = False) -> pd.DataFrame:
+    """Daily Treasury-bill rates, the decision model's market block.
+
+    The daily bill rates are too fine for the monthly frame, so they cache
+    separately to ``data/processed/tbill_daily.csv``; a missing file is built
+    from the cached FRED layer (:data:`TBILL_IDS`).
+
+    Args:
+        rebuild: Rebuild and overwrite even when the CSV exists.
+
+    Returns:
+        Frame with the ``tbill3`` and ``tbill6`` columns, float64 on a
+        DatetimeIndex named ``date``.
+    """
+    path = frame_path("tbill_daily")
+    if rebuild or not path.exists():
+        raw = fred.fetch_many(TBILL_IDS, on_error="raise")
+        out = pd.DataFrame({registry.get(sid).column: raw[sid] for sid in TBILL_IDS})
+        save_frame(out, "tbill_daily")
     frame = pd.read_csv(path, parse_dates=["date"], index_col="date")
     frame.index = pd.DatetimeIndex(frame.index, name="date")
     return frame.astype("float64")
