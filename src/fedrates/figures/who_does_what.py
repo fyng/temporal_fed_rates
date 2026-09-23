@@ -37,7 +37,7 @@ _FED, _MKT = MAIN["BLUE"], MAIN["YELLOW"]
 # sub is a small muted line (FOMC) or a bold rate (facilities).
 _BOXES = [
     (2.2, 7.8, 8.5, 9.7, "Federal Open Market Committee",
-     "12 votes: 7 governors, New York Fed president, 4 rotating regional presidents", "fed"),
+     "Sets the target range and the standing repo rates", "fed"),
     (3.4, 6.6, 6.75, 7.55, "New York Fed trading desk", None, "fed"),
     (0.3, 2.5, 4.65, 5.75, "Interest on reserves", "3.90%", "fed"),
     (2.7, 4.9, 4.65, 5.75, "Reverse repo", "3.75%", "fed"),
@@ -53,13 +53,22 @@ _BOXES = [
 # sits at (lx, ly) with the given anchoring and describes the arrow.
 _ARROWS = [
     (5.0, 8.5, 5.0, 7.55, "Target range 3.75-4.00%", 5.2, 8.02, "left", None, 1.2),
-    (5.0, 6.75, 5.0, 5.8, "Sets the rates", 5.2, 6.27, "left", None, 1.2),
-    (2.35, 3.05, 2.75, 3.05, "Overnight loans (fed funds)", 2.55, 2.35, "center", None, 3.0),
-    (3.85, 3.5, 1.4, 4.75, "Park reserves", 2.45, 4.13, "right", None, 1.2),
-    (6.35, 3.5, 3.8, 4.75, "Deposit cash", 4.85, 4.15, "right", None, 1.2),
-    (8.15, 3.5, 6.4, 4.75, "Borrow in a pinch", 8.45, 4.2, "center", "dash", 1.2),
-    (9.35, 3.5, 8.8, 4.75, None, 0.0, 0.0, "left", "dash", 1.2),
+    (5.0, 6.75, 5.0, 5.8, "Implements the rates", 5.2, 6.27, "left", None, 1.2),
+    (2.35, 3.05, 2.75, 3.05, "Fed funds", 2.55, 3.62, "center", None, 1.2),
+    (3.85, 3.5, 2.2, 4.75, "Park reserves", 1.75, 4.35, "right", None, 1.2),
+    (6.35, 3.5, 4.5, 4.75, "Deposit cash", 4.85, 4.15, "right", None, 1.2),
+    (8.15, 3.5, 5.7, 4.75, "Borrow in a pinch", 8.45, 4.2, "center", "dash", 1.2),
+    (9.35, 3.5, 9.5, 4.75, None, 0.0, 0.0, "left", "dash", 1.2),
+    (1.0, 3.5, 2.7, 5.0, None, 0.0, 0.0, "left", "dash", 1.2),
 ]
+
+# Which body sets each administered rate.
+_SET_BY = {
+    "Interest on reserves": "Set by the Board",
+    "Reverse repo": "Set by the FOMC",
+    "Standing repo": "Set by the FOMC",
+    "Discount window": "Set by the Board",
+}
 
 _NOTE = ("Effective rate 3.88%, published daily by the New York Fed", 2.55, 1.95)
 
@@ -93,6 +102,8 @@ def _box(fig: go.Figure, x0, x1, y0, y1, main, sub, side) -> None:
                            font=body | dict(size=10.5))
         fig.add_annotation(x=cx, y=y0 + pad, text=f"<b>{sub}</b>", showarrow=False,
                            font=body | dict(size=12.5))
+        fig.add_annotation(x=cx, y=y0 + 0.06, text=_SET_BY[main], showarrow=False,
+                           font=body | dict(size=8, color=MUTED))
     else:
         fig.add_annotation(x=cx, y=y1 - pad, text=main, showarrow=False,
                            font=body | dict(size=12))

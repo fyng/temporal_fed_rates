@@ -20,6 +20,8 @@ dependencies = [
     "openpyxl",
     "beautifulsoup4",
     "lxml",
+    "markdown>=3.10.3",
+    "latex2mathml>=3.81.1",
 ]
 
 [dependency-groups]
