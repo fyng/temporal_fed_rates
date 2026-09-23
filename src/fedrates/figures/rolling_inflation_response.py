@@ -121,7 +121,7 @@ def build_fig() -> go.Figure:
         cliponaxis=False,
     )
     period_shading(fig, [(_X_START, _BREAK), (_UNSTABLE, _X_END)])
-    _period_label(fig, pd.Timestamp("1976-07-01"), "Before Volcker")
+    _period_label(fig, pd.Timestamp("1976-07-01"), "Windows ending before 1983")
     _period_label(fig, pd.Timestamp("2018-01-01"), "Unstable")
     for (x0, x1), med in zip(_MEDIAN_SPANS, (pre, mid), strict=True):
         fig.add_shape(

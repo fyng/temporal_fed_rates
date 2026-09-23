@@ -45,22 +45,29 @@ FOOTNOTE = (
     "over five decisions; †Jan 2010-Dec 2023 only, prices just before each announcement"
 )
 
-# (spec, label) top to bottom: fitted models first, feature counts climbing
-# 3 -> 19, then the market-input models, the futures benchmark and baselines.
+# (spec, label) top to bottom: grouped by the kind of data used, groups and
+# rows within each group ordered best first by ranked probability score
+# (lower is better). Written out in full on purpose: no computed sort, so
+# ties between metrics cannot reshuffle the layout.
 _ROWS: tuple[tuple[str, str], ...] = (
+    ("futures", "Fed-funds futures†"),
+    ("history+market", "History + market rates"),
+    ("market", "Market rates only"),
     ("history", "History only"),
-    ("rule", "Rule gaps only"),
     ("history+rule", "History + rule gaps"),
-    ("macro", "Economy only"),
     ("history+macro", "History + economy"),
     ("full", "Everything"),
-    ("market", "Market rates only"),
-    ("history+market", "History + market rates"),
-    ("futures", "Fed-funds futures†"),
+    ("rule", "Rule gaps only"),
+    ("macro", "Economy only"),
     ("constant_hold", "Always hold"),
 )
-_FOCUS = "history"
+_FOCUS = "history+market"
 _PRIOR = "expanding_prior"
+
+# Rows after which a thin gap separates the groups by the kind of data used
+# (futures / market rates / history-based / no history), each set off like
+# the futures benchmark row always has been.
+_GROUP_ENDS = frozenset({"futures", "market", "full", "macro"})
 
 _LOWER_BETTER = frozenset({"rps"})
 _ARROW_LEN = 70  # px from label to arrow tip
@@ -232,12 +239,14 @@ def build_fig() -> go.Figure:
     ]
     colours = [MAIN["BLUE"] if spec == _FOCUS else GREY_LABEL for spec in specs]
     n = len(specs)
-    # Bar centres on their row slots, with a thin extra gap isolating the
-    # futures benchmark row from the fitted models above and baselines below.
+    # Bar centres on their row slots, with a thin extra gap after each
+    # group-ending row; the futures row keeps one too, being scored on a
+    # separate sample.
     _gap = 0.22
-    fut_y = n - 1 - specs.index("futures")
-    ys = [float(n - 1 - i) for i in range(n)]
-    ys = [y + (_gap if y > fut_y else -_gap if y < fut_y else 0.0) for y in ys]
+    ys = [
+        float(n - 1 - i - _gap * sum(specs[j] in _GROUP_ENDS for j in range(i)))
+        for i in range(n)
+    ]
     y_range = [min(ys) - 0.5, max(ys) + 0.5]
     fig = make_subplots(rows=1, cols=len(_PANELS), shared_yaxes=True, horizontal_spacing=0.035)
     for col, (metric, _, _, _) in enumerate(_PANELS, start=1):
@@ -271,7 +280,8 @@ def build_fig() -> go.Figure:
     # Guard: every plotted bar carries its own specification's cached value.
     for trace, (metric, _, _, _) in zip(fig.data, _PANELS, strict=True):
         for pos, val in zip(trace.y, trace.x, strict=True):
-            assert val == float(row.loc[specs[n - 1 - int(pos)], metric])
+            i = min(range(n), key=lambda j: abs(ys[j] - pos))
+            assert val == float(row.loc[specs[i], metric])
     economist(
         fig,
         title=TITLE,

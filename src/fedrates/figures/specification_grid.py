@@ -29,11 +29,14 @@ SIZE = "col3"
 
 TITLE = "Signal failure"
 SUBTITLE = (
-    "Long-run Fed response to inflation and slack, by sample and frequency<br>"
-    "Estimate and 95% confidence interval"
+    "Long-run Fed response to inflation and the jobs market, by sample and "
+    "frequency<br>Estimate and 95% confidence interval"
 )
 SOURCE = "Sources: Federal Reserve; FRED; our analysis"
-FOOTNOTE = "Partial-adjustment Taylor rule; Newey-West standard errors"
+FOOTNOTE = (
+    "*Natural rate of unemployment minus actual rate. "
+    "Partial-adjustment Taylor rule; Newey-West standard errors"
+)
 
 # Panel scales. The 1994+ monthly inflation interval (upper bound 11.2) runs to
 # the panel edge and is flagged with an arrowhead; the true bound sits beside it.
@@ -213,7 +216,7 @@ def _labels(fig: go.Figure, grid: pd.DataFrame) -> None:
     kw = dict(showarrow=False, font=dict(family=FONT_BODY, size=12.5, color=TEXT))
     for xref, text in (
         ("x domain", "Inflation"),
-        ("x2 domain", "Slack"),
+        ("x2 domain", "Jobs market*"),
     ):
         fig.add_annotation(
             x=0,

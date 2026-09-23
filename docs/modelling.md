@@ -22,23 +22,39 @@ That 66% is the central difficulty. A model that always says "hold" is right two
 
 - **Weighted kappa** measures agreement with the actual decisions beyond what chance would give, and punishes a miss more the further it lands from the truth.
 - **The ranked probability score** rewards a model for putting its probability on the right outcome and on outcomes near it. Lower is better.
-- **The area under the ROC curve** asks, for each kind of decision, how often the model ranks a meeting that took it above one that did not. Always saying hold scores 0.5.
-- **The area under the precision-recall curve** asks the same question but punishes false alarms on rare decisions harder. Always saying hold scores the share of each decision, 0.2 on average.
+- **The area under the ROC (receiver operating characteristic) curve** asks, for each kind of decision, how often the model ranks a meeting that took it above one that did not. Always saying hold scores 0.5.
+- **The area under the precision-recall (PR) curve** asks the same question but punishes false alarms on rare decisions harder. Always saying hold scores the share of each decision, 0.2 on average.
 - **F1** balances how many of each decision the model catches against how many of its calls are right.
 
 The last three are computed for each of the five kinds of decision against the rest and then averaged, so a 25bp cut counts as much as a hold.
 
-We also lag every input by a month. The committee sets rates knowing last month's figures, not this month's: consumer prices for one month appear only in the middle of the next. Matching each meeting to data dated the same month hands the model figures that did not yet exist.
+We also lag every input by a month. The committee sets rates knowing last month's figures, not this month's: consumer prices for one month appear only in the middle of the next. Matching each meeting to data dated the same month hands the model figures that did not yet exist. The economic series come from FRED (Federal Reserve Economic Data), run by the St Louis Fed.
+
+## The chairs
+
+The models cover nine chairs of the Fed. The sample from 1961 starts under the first.
+
+| Chair | Term | Record |
+| --- | --- | --- |
+| William McChesney Martin | Apr 1951-Jan 1970 | Negotiated the Fed's independence from the Treasury; let inflation rise in the late 1960s |
+| Arthur Burns | Feb 1970-Jan 1978 | Kept rates low under pressure from Richard Nixon; inflation passed 12% |
+| G. William Miller | Mar 1978-Aug 1979 | Shortest term; inflation kept climbing |
+| Paul Volcker | Aug 1979-Aug 1987 | Targeted reserves, let rates reach 20% and broke inflation |
+| Alan Greenspan | Aug 1987-Jan 2006 | First announced decisions, in 1994; moved early and in small steps; presided over the Great Moderation |
+| Ben Bernanke | Feb 2006-Jan 2014 | Cut to zero in 2008, began bond-buying, press conferences and a formal 2% target |
+| Janet Yellen | Feb 2014-Feb 2018 | Raised rates for the first time in nearly a decade, in 2015, and slowly thereafter |
+| Jerome Powell | Feb 2018-May 2026 | Made insurance cuts in 2019, cut to zero in 2020, then raised rates faster than anyone since Volcker |
+| Kevin Warsh | May 2026- | A long-standing critic of the Fed's big balance sheet; raised rates in September 2026 |
 
 ## Model one: the level of the rate
 
-The first model is the standard one. The Fed picks a target for its rate based on inflation and slack in the economy, then moves only part of the way towards it at each step:
+The first model is the standard one. The Fed picks a target for its rate based on inflation and the state of the jobs market, then moves only part of the way towards it at each step:
 
 $$
 i_t = \rho\, i_{t-1} + (1-\rho)\left[r^* + \pi_t + a\,(\pi_t - \pi^*) + b\, g_t\right] + \varepsilon_t
 $$
 
-Here $i_t$ is the policy rate, $\pi_t$ core inflation, $\pi^* = 2\%$ the Fed's target, $r^*$ the neutral real rate and $g_t$ slack. $\rho$ measures inertia. $a$ is the response to inflation beyond one-for-one, so the rate rises by $1 + a$ points in the long run for each point of inflation, and $b$ is the response to slack. Subtracting $r^* + \pi^*$ from both sides gives the form we estimate by least squares:
+Here $i_t$ is the policy rate, $\pi_t$ core inflation, $\pi^* = 2\%$ the Fed's target, $r^*$ the neutral real rate and $g_t$ the jobs-market gap: the natural rate of unemployment minus the actual rate, positive when the jobs market is tight. $\rho$ measures inertia. $a$ is the response to inflation beyond one-for-one, so the rate rises by $1 + a$ points in the long run for each point of inflation, and $b$ is the response to the jobs market. Subtracting $r^* + \pi^*$ from both sides gives the form we estimate by least squares:
 
 $$
 i_t - r^* - \pi^* = c_1\,(i_{t-1} - r^* - \pi^*) + c_2\,(\pi_t - \pi^*) + c_3\, g_t + \varepsilon_t
@@ -56,15 +72,17 @@ We estimate it on quarterly data from 1983, with standard errors robust to the c
 | --- | --- | --- |
 | $\rho$, inertia | 0.934 | 0.023 |
 | $a$, inflation response | 1.04 | 0.78 |
-| $b$, slack response | 1.69 | 0.58 |
+| $b$, jobs-market response | 1.69 | 0.58 |
 
 $n = 175$, $R^2 = 0.972$.
 
-**Inertia and the response to slack are clear. The response to inflation is not.** It has the right sign but lies just 1.3 standard errors from zero. More care with the data will not fix this. The model recovers $a$ and $b$ by dividing by $1-\rho$, and as $\rho$ nears one the divisor shrinks and takes the precision with it. The coefficients estimated before that division are all tight: $c_1 = 0.934$ (0.023), $c_2 = 0.135$ (0.056) and $c_3 = 0.112$ (0.030).
+**Inertia and the response to the jobs market are clear. The response to inflation is not.** It has the right sign but lies just 1.3 standard errors from zero. More care with the data will not fix this. The model recovers $a$ and $b$ by dividing by $1-\rho$, and as $\rho$ nears one the divisor shrinks and takes the precision with it. The coefficients estimated before that division are all tight: $c_1 = 0.934$ (0.023), $c_2 = 0.135$ (0.056) and $c_3 = 0.112$ (0.030).
 
 ![Signal failure](../figures/production/specification_grid.png)
 
-Shortening the sample makes things worse:
+The chart above shows six versions of the model: three starting dates, each fitted on monthly data (grey) and quarterly data (blue). Each dot is an estimate and each bar its 95% confidence range. The left panel shows $a$, the response to inflation. At zero, the Fed moves its rate one-for-one with inflation, so real rates stay put. Above zero, it lifts real rates when inflation rises, which is what a Fed must do to bring inflation down. Every bar crosses zero, so no version can rule out a Fed that merely keeps pace with inflation, and the bars widen as the sample shortens. The right panel shows $b$, the response to the jobs market. All six estimates lie between 1.4 and 1.9, and all but one bar clear zero: for each point that unemployment rises above its natural rate, the Fed eventually cuts by about 1.7 points. The Fed's response to jobs shows up clearly; its response to inflation does not.
+
+The numbers behind the left panel show that shortening the sample makes things worse:
 
 | Sample | Monthly | Quarterly |
 | --- | --- | --- |
@@ -79,6 +97,8 @@ The monthly estimate from 1994 implies that, in the long run, the Fed raises rat
 **The model finds one real break.** Across rolling ten-year windows ending before 1983, the median $a$ is −0.61: the Fed raised rates by less than inflation rose, so real rates fell as prices climbed. For windows ending between 1983 and 1999 the median is +0.78, and the estimate holds steady: the Fed raised rates by more than inflation, so real rates rose. This reproduces the result of Clarida, Galí and Gertler on our data: the Fed did not lean against inflation before Paul Volcker, and did afterwards.
 
 After 2000 the estimate falls apart. Median $\rho$ climbs from 0.93 in the 1983-99 windows to 0.98, and the division by $1-\rho$ throws 54% of windows ending since 2000 off the chart's scale, some as far as ±560. Since 2000 the rolling windows cannot pin down the Fed's response to inflation at all.
+
+The chart below fits the model again and again on ten years of monthly data, sliding the window forward a month at a time. Each point on the line is the estimate of $a$ for the ten years ending on that date, so the point for 1990 reflects 1980-90. The red line marks zero. Below it, real rates fall as inflation rises, which feeds inflation; above it, real rates rise and damp it. The left shading covers windows ending before 1983, dominated by the 1970s. The line crosses zero as Volcker's years enter the window, then holds near 0.8 for almost two decades. From 1999 it plunges, and in the right shading it lurches or leaves the scale altogether; circles on the top and bottom edges mark those windows. These swings come from dividing by $1-\rho$, not from changes in policy.
 
 ![The Volcker break](../figures/production/rolling_inflation_response.png)
 
@@ -114,14 +134,14 @@ Fed-funds futures pay out on the average overnight rate in a given month, so the
 
 | Model | Inputs | Kappa | Probability score | ROC area | PR area | F1 | Accuracy |
 | --- | --- | --- | --- | --- | --- | --- | --- |
+| **History + market rates** | **5** | **0.77** | **0.034** | **0.96** | **0.75** | **0.64** | **81%** |
+| Market rates only | 2 | 0.74 | 0.037 | 0.93 | 0.72 | 0.62 | 81% |
 | History only | 3 | 0.64 | 0.052 | 0.83 | 0.50 | 0.50 | 78% |
 | History + rule gaps | 8 | 0.61 | 0.058 | 0.86 | 0.52 | 0.50 | 73% |
 | History + economy | 14 | 0.58 | 0.073 | 0.79 | 0.43 | 0.49 | 70% |
 | Everything | 19 | 0.55 | 0.079 | 0.82 | 0.43 | 0.41 | 68% |
 | Rule gaps only | 5 | 0.35 | 0.082 | 0.80 | 0.42 | 0.31 | 68% |
 | Economy only | 11 | 0.32 | 0.109 | 0.60 | 0.31 | 0.31 | 64% |
-| Market rates only | 2 | 0.74 | 0.037 | 0.93 | 0.72 | 0.62 | 81% |
-| **History + market rates** | **5** | **0.77** | **0.034** | **0.96** | **0.75** | **0.64** | **81%** |
 | *Past shares* | — | *0.04* | *0.084* | *0.56* | *0.25* | *0.22* | *72%* |
 | *Always hold* | — | *0* | *0.092* | *0.50* | *0.20* | *0.17* | *73%* |
 
@@ -143,11 +163,11 @@ The model does not need constant refitting. Refit only every eighth meeting, abo
 
 | Model | Kappa | Probability score | ROC area | PR area | F1 | Accuracy |
 | --- | --- | --- | --- | --- | --- | --- |
-| History only | 0.58 | 0.047 | 0.80 | 0.53 | 0.42 | 80% |
-| History + rule gaps | 0.59 | 0.053 | 0.84 | 0.50 | 0.47 | 74% |
+| **Futures** | **0.99** | **0.003** | **0.95** | **0.89** | **0.91** | **99%** |
 | Market rates only | 0.80 | 0.025 | 0.95 | 0.80 | 0.49 | 87% |
 | History + market rates | 0.79 | 0.026 | 0.96 | 0.80 | 0.60 | 85% |
-| **Futures** | **0.99** | **0.003** | **0.95** | **0.89** | **0.91** | **99%** |
+| History only | 0.58 | 0.047 | 0.80 | 0.53 | 0.42 | 80% |
+| History + rule gaps | 0.59 | 0.053 | 0.84 | 0.50 | 0.47 | 74% |
 | *Past shares* | *0.01* | *0.066* | *0.67* | *0.27* | *0.17* | *77%* |
 | *Always hold* | *0* | *0.073* | *0.50* | *0.20* | *0.18* | *78%* |
 
@@ -178,6 +198,15 @@ It does show that, to predict the Fed's next move, market prices beat the Fed's 
 - The neutral real rate, $r^*$, is fixed at 2%. A time-varying estimate from Thomas Laubach and John Williams, later with Kathryn Holston, is available in the code but untested in these models.
 - Records of dissenting votes start in March 2002. Earlier dissents sit only in the minutes, so dissent is not an input.
 - The market and futures benchmarks use prices from after the Fed's pre-meeting signals: the last trading day before each meeting for bills, minutes before the announcement for futures.
+
+## Abbreviations
+
+> **bp** basis point: a hundredth of a percentage point.  
+> **ROC** receiver operating characteristic.  
+> **PR** precision-recall.  
+> **VIX** a gauge of expected stockmarket turbulence, derived from options prices.  
+> **FRED** Federal Reserve Economic Data: the St Louis Fed's database of economic series.  
+> **NBER** National Bureau of Economic Research.
 
 ## Further reading
 
